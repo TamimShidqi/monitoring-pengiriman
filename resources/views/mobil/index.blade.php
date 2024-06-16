@@ -51,8 +51,17 @@
                                             <tr>
                                                 <td>{{ $data->nopol }}</td>
                                                 <td>{{ $data->merk }}</td>
-                                                <td>{{ $data->kapasitas }}</td>
+                                                <td>{{ $data->kapasitas }} Liter</td>
                                                 <td>{{ $data->masa_stnk }}</td>
+                                                <td align="center" style="font-size: 22px">
+                                                    @if ($data->status == 'ready')
+                                                        <span style="color: white"
+                                                            class="badge badge-primary text-capitalize">{{ $data->status }}</span>
+                                                    @elseif ($data->status == 'delivery')
+                                                        <span style="color: white"
+                                                            class="badge badge-success text-capitalize">{{ $data->status }}</span>
+                                                    @endif
+                                                </td>
                                                 <td align="center">
                                                     <a href="{{ route('mobil.edit', $data->id) }}"
                                                         class="btn btn-warning mr-2">

@@ -22,7 +22,7 @@
                                 <div class="form-group row" hidden>
                                     <label class="col-sm-2 col-form-label">Nama Akun</label>
                                     <div class="col-sm-10" >
-                                        <select name="pegawai_id" class="form-control">
+                                        <select name="sopir_id" class="form-control">
                                             <option class="form-control" hidden value="{{$akun->sopir_id}}">{{$akun->sopir->nama}}</option>
                                             <option class="form-control" disabled>~Pilih Nama Sopir~</option>
                                             @foreach ($sopir as $item)
@@ -34,8 +34,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">ID</label>
                                     <div class="col-sm-2">
-                                        <input type="text" name="sopir_id" value="{{$akun->id}}" id="sopir_id" class="form-control text-capitalize"
-                                            id="exampleInputPassword1">
+                                        <input type="text " name="sopir_id" value="{{$akun->id}}" id="sopir_id" class="form-control text-capitalize"
+                                            id="exampleInputPassword1" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -16,6 +16,6 @@ class sopir extends Model
 
     public function akun()
     {
-        return $this->hasMany(Akun::class);
+        return $this->hasOne(Akun::class);
     }
 }

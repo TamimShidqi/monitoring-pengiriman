@@ -33,31 +33,19 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label mt-2">Status</label>
                                         <div class="col-sm-10">
-                                            <form>
-                                                <div class="row ">
-                                                    <div class="col-sm-2 form-group">
-                                                        <select class="form-control ml-2" name="status" required>
-                                                            <option value="ready">Ready</option>
-                                                            <option value="delivery">On Delivery</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <select class="form-control ml-2" name="status" required>
+                                                <option value="ready">Ready</option>
+                                                <option value="delivery">On Delivery</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label mt-2">Kapasitas</label>
                                         <div class="col-sm-10">
-                                            <form>
-                                                <div class="row ">
-                                                    <div class="col-sm-2 form-group">
-                                                        <select class="form-control ml-2" name="kapasitas" required>
-                                                            <option value="8000l">8000 Liter</option>
-                                                            <option value="16000l">16000 Liter</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <select class="form-control ml-2" name="kapasitas" required>
+                                                <option value="8000">8000 Liter</option>
+                                                <option value="16000">16000 Liter</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -24,6 +24,7 @@ class SopirController extends Controller
     public function create()
     {
         $sopir = sopir::all();
+        $akun = Akun::all();
         return view('sopir.create', compact('sopir'));
     }
 
@@ -39,6 +40,7 @@ class SopirController extends Controller
         $sopir->no_hp = $request->no_hp;
         $sopir->masa_sim = $request->masa_sim;
       
+        
         $sopir->save();
 
         $akun = new Akun();

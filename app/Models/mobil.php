@@ -9,4 +9,6 @@ class mobil extends Model
 {
     use HasFactory;
     protected $table = 'mobil';
+
+    
 }

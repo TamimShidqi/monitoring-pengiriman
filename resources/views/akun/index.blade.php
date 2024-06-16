@@ -41,7 +41,7 @@
                                             <th>Nama Lengkap</th>
                                             <th>Email</th>
                                             <th>Password</th>
-                                            <th>Jabatan</th>
+                                            <th>Access</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
