@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Input Akun')
 @section('content')
     <br>
     <form action="{{ url('akun') }}" method="POST" enctype="multipart/form-data">

@@ -1,8 +1,8 @@
 @extends('layout.index')
-
+@section('titles', 'Input Pengiriman')
 @section('content')
     <br>
-    <form action="{{ url('mobil') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('pengiriman') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <section class="content">
             <div class="container-fluid">
@@ -12,71 +12,84 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Form Input Data Mobil</h3>
+                                <h3 class="card-title">Form Input Data Pengiriman</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form class="form-horizontal">
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nomor Polisi</label>
+                                        <label class="col-sm-2 col-form-label" for="sopir_id">Pilih Sopir</label>
+                                        <select class="form-control ml-2" name="sopir_id" id="sopir_id"
+                                            class="form-control" required>
+                                            <option value="">Pilih Data Sopir</option>
+                                            @foreach ($sopir as $s)
+                                                <option value="{{ $s->id }}">{{ $s->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="sopir_id">Pilih Mobil</label>
+                                        <select class="form-control ml-2" name="mobil_id" id="mobil_id"
+                                            class="form-control" required>
+                                            <option value="">Pilih Data Mobil</option>
+                                            @foreach ($mobil as $m)
+                                                <option value="{{ $m->id }}">{{ $m->merk }} {{ $m->kapasitas }}
+                                                    Liter</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Perusahaan</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nopol" class="form-control ml-2" required>
+                                            <input type="text" name="perusahaan" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Merk</label>
+                                        <label class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="merk" class="form-control ml-2" required>
+                                            <input type="text" name="alamat" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label mt-2">Status</label>
+                                        <label class="col-sm-2 col-form-label">Date Order</label>
                                         <div class="col-sm-10">
-                                            <form>
-                                                <div class="row ">
-                                                    <div class="col-sm-2 form-group">
-                                                        <select class="form-control" name="status" required>
-                                                            <option value="ready">Ready</option>
-                                                            <option value="delivery">On Delivery</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <input type="date" name="date_order" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label mt-2">Kapasitas</label>
+                                        <label class="col-sm-2 col-form-label">Qty. (Liter)</label>
                                         <div class="col-sm-10">
-                                            <form>
-                                                <div class="row ">
-                                                    <div class="col-sm-2 form-group">
-                                                        <select class="form-control" name="kapasitas" required>
-                                                            <option>~ Pilih Kapasitas ~</option>
-                                                            <option value="8000l">8000 Liter</option>
-                                                            <option value="16000l">16000 Liter</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <input type="number" name="liter" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Masa STNK</label>
+                                        <label class="col-sm-2 col-form-label">Jarak (km)</label>
                                         <div class="col-sm-10">
-                                            <input type="date" name="masa_stnk" class="form-control ml-2" required>
+                                            <input type="number" name="jarak" class="form-control ml-2" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tarif (Rp.)</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="tarif" class="form-control ml-2" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" hidden>
+                                        <label class="col-sm-2 col-form-label">Total</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="total" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div align="center">
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </div>
+                            </form>
                         </div>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
+                    </div>
+                </div>
+            </div>
+        </section>
     </form>
 @endsection

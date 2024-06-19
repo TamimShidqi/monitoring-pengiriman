@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\mobil;
 use App\Models\pengiriman;
 use App\Models\sopir;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class PengirimanController extends Controller
@@ -19,7 +20,10 @@ class PengirimanController extends Controller
 
     public function create()
     {
-        return view('pengiriman.create');
+        $sopir = sopir::where('status', 'ready')->get();
+        $mobil = mobil::where('status', 'ready')->get();
+        $pengiriman = pengiriman::all();
+        return view('pengiriman.create', compact('sopir', 'mobil', 'pengiriman'));
     }
 
     public function store(Request $request)
@@ -35,36 +39,17 @@ class PengirimanController extends Controller
         $pengiriman->tarif = $request->tarif;
         $total = $request->liter * $request->jarak * $request->tarif;
         $pengiriman->total = $total;
-        // $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
-        $pengiriman->status = $request->status;
-        $pengiriman->save();
+        if($request->file('foto')){
+            $file = $request->file('foto');
+            $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
+            $file->move('a_fotos', $nama_file);
+            $pengiriman->foto=$nama_file;
 
-        // $request->validate([
-        //     'sopir_id' => 'required',
-        //     'mobil_id' => 'required',
-        //     'perusahaan' => 'required', 
-        //     'alamat' => 'required',
-        //     'date_order' => 'required',
-        //     'liter' => 'required',
-        //     'jarak' => 'required',
-        //     'tarif' => 'required',
-        //   ]);
-        
-        //   $total = $request->liter * $request->jarak * $request->tarif;
-        
-        //   Pengiriman::create([
-        //     'sopir_id' => $request->sopir_id,
-        //     'mobil_id' => $request->mobil_id,
-        //     'perusahaan' => $request->perusahaan,
-        //     'alamat' => $request->alamat, 
-        //     'date_order' => $request->date_order,
-        //     'liter' => $request->liter,
-        //     'jarak' => $request->jarak,
-        //     'tarif' => $request->tarif,
-        //     'total' => $total
-        //   ]);
-        
-        // Pengiriman::create($request->all());
+            File::delete('fotos', $pengiriman->foto);
+            $pengiriman->foto=$nama_file;
+        }
+
+        $pengiriman->save();
 
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil ditambahkan!');
     }
@@ -98,8 +83,18 @@ class PengirimanController extends Controller
         $pengiriman->total = $total;
         // $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
         $pengiriman->status = $request->status;
+        if($request->file('foto')){
+            $file = $request->file('foto');
+            $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
+            $file->move('a_fotos', $nama_file);
+            $pengiriman->foto=$nama_file;
+
+            File::delete('fotos', $pengiriman->foto);
+            $pengiriman->foto=$nama_file;
+        }
+
         $pengiriman->save();
-        
+
         // $request->validate([
         //     'sopir_id' => 'required',
         //     'mobil_id' => 'required',

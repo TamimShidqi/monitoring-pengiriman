@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Edit Akun')
 @section('content')
 <br>
 <form action="{{ url('akun/' . $akun->id) }}" method="POST" enctype="multipart/form-data">
@@ -59,7 +60,6 @@
                                                     <select class="form-control" id="role" name="role" required>
                                                         <option value="{{ $akun->role }}" hidden>
                                                             {{ $akun->role }}</option>
-                                                        <option>~ Pilih Jabatan ~</option>
                                                         <option value="admin">Admin</option>
                                                         <option value="sopir">Sopir</option>
                                                     </select>

@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Sopir')
 @section('content')
     <br>
     @if (Session::has('success'))

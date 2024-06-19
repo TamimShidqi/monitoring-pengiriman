@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Dashboard')
 @section('content')
     @if (Session::has('success'))
         <p class="alert alert-success">{{ Session::get('success') }}</p>

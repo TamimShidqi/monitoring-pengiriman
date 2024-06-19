@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Akun')
 @section('content')
     <br>
     @if (Session::has('success'))
@@ -24,7 +25,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
                     {{-- <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('akun/create') }}">
                         Tambah Akun
                     </a> --}}

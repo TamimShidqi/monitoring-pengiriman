@@ -1,5 +1,5 @@
 @extends('layout.index')
-
+@section('titles', 'Input Mobil')
 @section('content')
     <br>
     <form action="{{ url('mobil') }}" method="POST" enctype="multipart/form-data">

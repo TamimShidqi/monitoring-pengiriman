@@ -45,10 +45,10 @@ class SopirController extends Controller
 
         $akun = new Akun();
         $akun->email = $sopir->email;
-        $akun->sopir_id = $request->sopir_id;
+        $akun->sopir_id = $sopir->id;
         $akun->email = $sopir->email;
-        $akun->password = $sopir->tgl_lahir; 
-        $akun->role = $request->role;
+        $password = str_replace('-', '', $sopir->tgl_lahir);
+        $akun->password = $password;
         $akun->save();
 
 

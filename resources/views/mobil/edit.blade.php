@@ -1,4 +1,5 @@
 @extends('layout.index')
+@section('titles', 'Update STNK Mobil')
 @section('content')
 <br>
 <form action="{{ url('mobil/' . $mobil->id) }}" method="POST" enctype="multipart/form-data">
