@@ -93,10 +93,10 @@
                                                         <button class="btn btn-danger mr-2" type="submit"><i
                                                                 class="fas fa-trash-alt"></i></button>
                                                     </form>
-                                                    {{-- <a href="{{ route('pengiriman.print', $data->id) }}"
+                                                    <a href="{{ route('pengiriman.cetakpdf', $data->id) }}"
                                                         class="btn btn-success mr-2">
                                                         <i class="fas fa-print"></i>
-                                                    </a> --}}
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -39,8 +39,8 @@ class SopirController extends Controller
         $sopir->email = $request->email;
         $sopir->no_hp = $request->no_hp;
         $sopir->masa_sim = $request->masa_sim;
-      
-        
+
+
         $sopir->save();
 
         $akun = new Akun();

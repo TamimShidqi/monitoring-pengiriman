@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\mobil;
 use App\Models\pengiriman;
 use App\Models\sopir;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
@@ -119,9 +120,12 @@ class PengirimanController extends Controller
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil dihapus!');
     }
 
-    public function print()
+    public function cetakpdf()
     {
-        $pengiriman = pengiriman::all();
-        return view('pengiriman.cetak', compact('pengiriman'));
+    	$pengiriman = pengiriman::all();
+
+    	$pdf = PDF::loadview('pengiriman_pdf',['pengiriman'=>$pengiriman]);
+    	return $pdf->download('laporan-pengiriman-pdf');
+        return redirect('pengiriman');
     }
 }
