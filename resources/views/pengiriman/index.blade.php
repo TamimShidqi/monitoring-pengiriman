@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Pengiriman</li>
                     </ol>
                 </div>
@@ -80,14 +80,13 @@
                                                     @endif
                                                 </td>
                                                 <td align="center">
-                                                    {{-- @if (session('user')[0]['jabatan'] == 'Manager') --}}
                                                     <a href="{{ route('pengiriman.edit', $data->id) }}"
                                                         class="btn btn-warning mr-2">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    {{-- @endif --}}
                                                     <form style="display: inline"
-                                                        action="{{ route('pengiriman.destroy', $data->id) }}" method="POST">
+                                                        action="{{ route('pengiriman.destroy', $data->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button class="btn btn-danger mr-2" type="submit"><i

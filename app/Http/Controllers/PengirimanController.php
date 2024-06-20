@@ -91,10 +91,43 @@ class PengirimanController extends Controller
         // $total = $request->liter * $request->jarak * $request->tarif;
         // $pengiriman->total = $total;
         $pengiriman->status = $request->status;
+        // $pengiriman->foto = $request->foto;
 
+        $sopir = sopir::find($pengiriman->sopir_id);
+        if($request->status == 'arrived'){
+            $sopir->status = 'ready';
+        }else{
+            $sopir->status = 'delivery';
+        }
+        $sopir->save();
+
+        $mobil = mobil::find($pengiriman->mobil_id);
+        if($request->status == 'arrived'){
+            $mobil->status = 'ready';
+        }else{
+            $mobil->status = 'delivery';
+        }
+        $mobil->save();
         $pengiriman->save();
 
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
+    }
+
+    public function pickup($id)
+    {
+        $pengiriman = pengiriman::find($id);
+        $pengiriman->status = 'pickup';
+        $pengiriman->save();
+
+        $sopir = sopir::find($pengiriman->sopir_id);
+        $sopir->status = 'ready';
+        $sopir->save();
+
+        $mobil = mobil::find($pengiriman->mobil_id);
+        $mobil->status = 'ready';
+        $mobil->save();
+
+        return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diambil!');
     }
 
     public function destroy($id)

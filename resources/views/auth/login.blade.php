@@ -4,7 +4,10 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <div class="card-header text-center">
+            <h1>PT. Dul Jaya Sempurna</h1>
+          </div>
+          <br><br>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
