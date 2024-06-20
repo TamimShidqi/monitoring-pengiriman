@@ -16,9 +16,9 @@
             </div>
             <div class="pull-left info mb-3">
                 <div class="nama">
-                    @if (auth('akuns')->check())
+                    {{-- @if (auth('akuns')->check())
                         <p>Role: {{ auth('akuns')->user()->role }}</p>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>

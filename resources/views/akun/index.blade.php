@@ -42,7 +42,9 @@
                                             <th>Email</th>
                                             <th>Password</th>
                                             <th>Access</th>
+                                            {{-- @if (Auth::akun()->role === 'A') --}}
                                             <th>AKSI</th>
+                                            {{-- @endif --}}
                                         </tr>
                                     </thead>
                                     <tbody>

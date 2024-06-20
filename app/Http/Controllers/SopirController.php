@@ -70,6 +70,11 @@ class SopirController extends Controller
         $sopir->no_hp = $request->no_hp;
         $sopir->masa_sim = $request->masa_sim;
         $sopir->save();
+
+        $akun = Akun::where('sopir_id', $sopir->id)->first();
+        $akun->email = $sopir->email;
+        
+        $akun->save();
         return redirect('sopir')->with('success', "Data Berhasil Diupdate");
     }
 

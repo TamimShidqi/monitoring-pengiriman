@@ -24,7 +24,7 @@ class PengirimanController extends Controller
         $sopir = sopir::where('status', 'ready')->get();
         $mobil = mobil::where('status', 'ready')->get();
         $pengiriman = pengiriman::all();
-        return view('pengiriman.create', compact('pengiriman'));
+        return view('pengiriman.create', compact('pengiriman', 'sopir', 'mobil'));
     }
 
     public function store(Request $request)
@@ -51,6 +51,13 @@ class PengirimanController extends Controller
         // }
         // $pengiriman->status = $request->status;
 
+        $sopir = sopir::find($request->sopir_id);
+        $sopir->status = 'delivery';
+        $sopir->save();
+
+        $mobil = mobil::find($request->mobil_id);
+        $mobil->status = 'delivery';
+        $mobil->save();
         $pengiriman->save();
 
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil ditambahkan!');
@@ -73,35 +80,19 @@ class PengirimanController extends Controller
     public function update(Request $request, $id)
     {
         $pengiriman = pengiriman::find($id);
-        $pengiriman->sopir_id = $request->sopir_id;
-        $pengiriman->mobil_id = $request->mobil_id;
-        $pengiriman->perusahaan = $request->perusahaan;
-        $pengiriman->alamat = $request->alamat;
-        $pengiriman->date_order = $request->date_order;
-        $pengiriman->liter = $request->liter;
-        $pengiriman->jarak = $request->jarak;
-        $pengiriman->tarif = $request->tarif;
-        $total = $request->liter * $request->jarak * $request->tarif;
-        $pengiriman->total = $total;
-        // $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
-        // $pengiriman->status = $request->status;
+        // $pengiriman->sopir_id = $request->sopir_id;
+        // $pengiriman->mobil_id = $request->mobil_id;
+        // $pengiriman->perusahaan = $request->perusahaan;
+        // $pengiriman->alamat = $request->alamat;
+        // $pengiriman->date_order = $request->date_order;
+        // $pengiriman->liter = $request->liter;
+        // $pengiriman->jarak = $request->jarak;
+        // $pengiriman->tarif = $request->tarif;
+        // $total = $request->liter * $request->jarak * $request->tarif;
+        // $pengiriman->total = $total;
+        $pengiriman->status = $request->status;
 
         $pengiriman->save();
-
-        // $request->validate([
-        //     'sopir_id' => 'required',
-        //     'mobil_id' => 'required',
-        //     'perusahaan' => 'required',
-        //     'alamat' => 'required',
-        //     'date_order' => 'required',
-        //     'liter' => 'required',
-        //     'jarak' => 'required',
-        //     'tarif' => 'required',
-        //     'total' => 'required',
-        //     'status' => 'required',
-        // ]);
-
-        // Pengiriman::find($id)->update($request->all());
 
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
     }

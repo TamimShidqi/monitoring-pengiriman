@@ -19,18 +19,18 @@
                             <!-- form start -->
                             <form class="form-horizontal">
                                 <div class="card-body">
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" hidden>ID</label>
+                                    <div class="form-group row" hidden>
+                                        <label class="col-sm-2 col-form-label">ID</label>
                                         <div class="col-sm-2">
                                             <input type="text " name="id" value="{{ $sopir->id }}" id="id"
-                                                class="form-control" hidden>
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="nama">Nama</label>
                                         <div class="col-sm-2">
                                             <input type="text" value="{{ $sopir->nama }}" name="nama"
-                                                class="form-control" readonly>
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -75,7 +75,7 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row" hidden>
                                         <label class="col-sm-2 col-form-label mt-2">Status</label>
                                         <div class="col-sm-2">
                                                 <select class="form-control" id="status" name="status" required>

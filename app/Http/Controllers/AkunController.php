@@ -89,7 +89,10 @@ class AkunController extends Controller
         $model = Akun::find($id);
         $model->sopir_id = $request->sopir_id;
         $model->email = $request->email;
-        $model->password = $request->password;
+        $newPassword = $request->password;
+        if ($newPassword != null) {
+            $model->password = Hash::make($newPassword);
+        }
         $model->role = $request->role;
         $model->save();
         return redirect('akun')->with('success', "Data Berhasil Diupdate");

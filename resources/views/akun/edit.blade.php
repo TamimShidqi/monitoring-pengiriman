@@ -14,7 +14,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Form Edit akun {{$akun->sopir->nama}}</h3>
+                            <h3 class="card-title">Form Ubah Password akun {{$akun->sopir->nama}}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -45,7 +45,7 @@
                                         <input type="email" value="{{ $akun->email }}" name="email" class="form-control" id="exampleInputPassword1" >
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row d-flex justify-content-center">
                                     <label class="col-sm-2 col-form-label" for="password">Password</label>
                                     <div class="col-sm-2">
                                         <input type="password" value="{{ $akun->password }}" name="password" class="form-control" id="exampleInputPassword1" >
