@@ -15,9 +15,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}" role="button">
-                <i class="fas fa-sign-out-alt"></i>
-                <label for="">Logout</label>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn"><strong>Logout</strong></button>
+              </form>
             </a>
         </li>
 

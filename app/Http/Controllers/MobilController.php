@@ -23,7 +23,6 @@ class MobilController extends Controller
     {
         $mobil = new mobil();
         $mobil->nopol = $request->nopol;
-        $mobil->merk = $request->merk;
         $mobil->status = $request->status;
         $mobil->kapasitas = $request->kapasitas;
         $mobil->masa_stnk = $request->masa_stnk;
@@ -41,7 +40,6 @@ class MobilController extends Controller
     {
         $mobil = mobil::find($id);
         $mobil->nopol = $request->nopol;
-        $mobil->merk = $request->merk;
         $mobil->status = $request->status;
         $mobil->kapasitas = $request->kapasitas;
         $mobil->masa_stnk = $request->masa_stnk;

@@ -38,7 +38,26 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'akuns'
+        ]
+    ],
+
+    'providers' => [
+        'akuns' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Akun::class
+        ]
+    ],
+
+    'providers' => [
+        'akuns' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Akun::class,
+        ],
+
+        'akuns' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Akun::class,
         ],
     ],
 
@@ -60,9 +79,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'akuns' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Akun::class,
         ],
 
         // 'users' => [
@@ -91,8 +110,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'akuns' => [
+            'provider' => 'akuns',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

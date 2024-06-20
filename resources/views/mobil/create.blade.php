@@ -24,13 +24,7 @@
                                             <input type="text" name="nopol" class="form-control ml-2" required>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Merk</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="merk" class="form-control ml-2" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row" hidden>
                                         <label class="col-sm-2 col-form-label mt-2">Status</label>
                                         <div class="col-sm-10">
                                             <select class="form-control ml-2" name="status" required>

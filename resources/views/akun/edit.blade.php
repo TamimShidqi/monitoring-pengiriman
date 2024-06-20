@@ -32,14 +32,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" hidden>
                                     <label class="col-sm-2 col-form-label">ID</label>
                                     <div class="col-sm-2">
                                         <input type="text " name="sopir_id" value="{{$akun->id}}" id="sopir_id" class="form-control text-capitalize"
                                             id="exampleInputPassword1" readonly>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" hidden>
                                     <label class="col-sm-2 col-form-label" for="email">Email</label>
                                     <div class="col-sm-2">
                                         <input type="email" value="{{ $akun->email }}" name="email" class="form-control" id="exampleInputPassword1" >
@@ -51,7 +51,7 @@
                                         <input type="password" value="{{ $akun->password }}" name="password" class="form-control" id="exampleInputPassword1" >
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row" hidden>
                                     <label class="col-sm-2 col-form-label mt-2">Role</label>
                                     <div class="col-sm-10">
                                         <form>

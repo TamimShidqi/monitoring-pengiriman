@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Mobil</li>
                     </ol>
                 </div>
@@ -40,7 +40,6 @@
                                         <tr align="center">
 
                                             <th>Nomor Polisi</th>
-                                            <th>Merk</th>
                                             <th>Kapasitas</th>
                                             <th>Masa STNK</th>
                                             <th>Status</th>
@@ -51,7 +50,6 @@
                                         @foreach ($mobil as $data)
                                             <tr>
                                                 <td>{{ $data->nopol }}</td>
-                                                <td>{{ $data->merk }}</td>
                                                 <td>{{ $data->kapasitas }} Liter</td>
                                                 <td>{{ $data->masa_stnk }}</td>
                                                 <td align="center" style="font-size: 22px">

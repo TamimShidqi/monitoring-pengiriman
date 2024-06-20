@@ -4,8 +4,8 @@
         <a href="{{ url('dashboard') }}" class="brand-link">
             {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
             <span class="brand-text font-weight-light">PT. Dul Jaya Sempurna</span>
-          </a>
-          </center>
+        </a>
+    </center>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -15,7 +15,11 @@
                     height='40px' alt="User Image"></a>
             </div>
             <div class="pull-left info mb-3">
-                <a href="#" class="d-block">Tamim Shidqi</a>
+                <div class="nama">
+                    @if (auth('akuns')->check())
+                        <p>Role: {{ auth('akuns')->user()->role }}</p>
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -42,7 +46,7 @@
                     </a>
                 </li>
 
-                {{-- @if (session('user')[0]['role'] == 'admin') --}}
+                {{-- @if (session('akun')[0]['role'] == 'admin') --}}
                 <li class="nav-header">Akun</li>
                 <li class="nav-item">
                     <a href="{{ url('akun') }}" class="nav-link">

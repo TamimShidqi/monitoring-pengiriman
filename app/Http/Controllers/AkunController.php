@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use App\Models\sopir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
@@ -28,9 +29,7 @@ class AkunController extends Controller
     public function create()
     {
         $sopir = sopir::all();
-        // $model['akuns'] = new Akun();
         return view('akun.create', compact('sopir'));
-        // return view('akun.create', $model);
     }
 
     /**
@@ -45,7 +44,7 @@ class AkunController extends Controller
         $akun->email = $request->email;
         $akun->sopir_id = $request->sopir_id;
         $akun->email = $request->email;
-        $akun->password = $request->password;
+        $akun->password = Hash::make($request->password);
         $akun->role = $request->role;
         $akun->save();
         return redirect('akun')->with('success', "Data Berhasil Disimpan");

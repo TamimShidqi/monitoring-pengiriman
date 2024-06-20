@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Pengiriman</li>
                     </ol>
                 </div>
@@ -93,7 +93,7 @@
                                                         <button class="btn btn-danger mr-2" type="submit"><i
                                                                 class="fas fa-trash-alt"></i></button>
                                                     </form>
-                                                    <a href="{{ route('pengiriman.cetakpdf', $data->id) }}"
+                                                    <a href="{{ route('pengiriman.cetakpdf', $data->id) }}" method="POST"
                                                         class="btn btn-success mr-2">
                                                         <i class="fas fa-print"></i>
                                                     </a>

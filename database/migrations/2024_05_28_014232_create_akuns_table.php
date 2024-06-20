@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sopir_id')->constrained('sopir')->onDelete('cascade');
             $table->string('email', 50)->unique();
-            $table->string('password', 16);
+            $table->string('password', 60);
             $table->enum('role', ['admin', 'sopir'])->default('sopir');
             $table->timestamps();
         });

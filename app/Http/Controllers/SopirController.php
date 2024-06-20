@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use App\Models\sopir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SopirController extends Controller
 {
@@ -48,7 +49,7 @@ class SopirController extends Controller
         $akun->sopir_id = $sopir->id;
         $akun->email = $sopir->email;
         $password = str_replace('-', '', $sopir->tgl_lahir);
-        $akun->password = $password;
+        $akun->password = Hash::make($password);
         $akun->save();
 
 

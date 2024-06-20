@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Akun</li>
                     </ol>
                 </div>
@@ -51,7 +51,7 @@
                                                 <td>{{ $data->sopir->nama }}</td>
                                                 <td>{{ $data->email }}</td>
                                                 <td>
-                                                    {{ str_repeat('*', strlen($data->password)) }}
+                                                    {{ substr(str_repeat('*', strlen($data->password)), 0, 8) }}
                                                 </td>
                                                 <td class="text-capitalize">{{ $data->role }}</td>
                                                 <td align="center">

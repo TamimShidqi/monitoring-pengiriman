@@ -24,7 +24,7 @@ class PengirimanController extends Controller
         $sopir = sopir::where('status', 'ready')->get();
         $mobil = mobil::where('status', 'ready')->get();
         $pengiriman = pengiriman::all();
-        return view('pengiriman.create', compact('sopir', 'mobil', 'pengiriman'));
+        return view('pengiriman.create', compact('pengiriman'));
     }
 
     public function store(Request $request)
@@ -40,15 +40,16 @@ class PengirimanController extends Controller
         $pengiriman->tarif = $request->tarif;
         $total = $request->liter * $request->jarak * $request->tarif;
         $pengiriman->total = $total;
-        if($request->file('foto')){
-            $file = $request->file('foto');
-            $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
-            $file->move('a_fotos', $nama_file);
-            $pengiriman->foto=$nama_file;
+        // if($request->file('foto')){
+        //     $file = $request->file('foto');
+        //     $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
+        //     $file->move('a_fotos', $nama_file);
+        //     $pengiriman->foto=$nama_file;
 
-            File::delete('fotos', $pengiriman->foto);
-            $pengiriman->foto=$nama_file;
-        }
+        //     File::delete('fotos', $pengiriman->foto);
+        //     $pengiriman->foto=$nama_file;
+        // }
+        // $pengiriman->status = $request->status;
 
         $pengiriman->save();
 
@@ -83,16 +84,7 @@ class PengirimanController extends Controller
         $total = $request->liter * $request->jarak * $request->tarif;
         $pengiriman->total = $total;
         // $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
-        $pengiriman->status = $request->status;
-        if($request->file('foto')){
-            $file = $request->file('foto');
-            $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
-            $file->move('a_fotos', $nama_file);
-            $pengiriman->foto=$nama_file;
-
-            File::delete('fotos', $pengiriman->foto);
-            $pengiriman->foto=$nama_file;
-        }
+        // $pengiriman->status = $request->status;
 
         $pengiriman->save();
 
@@ -126,6 +118,5 @@ class PengirimanController extends Controller
 
     	$pdf = PDF::loadview('pengiriman_pdf',['pengiriman'=>$pengiriman]);
     	return $pdf->download('laporan-pengiriman-pdf');
-        return redirect('pengiriman');
     }
 }
