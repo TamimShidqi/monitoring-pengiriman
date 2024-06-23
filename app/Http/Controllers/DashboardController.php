@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $akun = Akun::all();
         $mobil = mobil::all();
         $sopir = sopir::all();
-        $pengiriman = pengiriman::all();
+        $pengiriman = pengiriman::where('status', '!=', 'arrived')->get();
         return view('Dashboard.index', compact('data', 'akun', 'mobil', 'sopir', 'pengiriman'));
     }
 }

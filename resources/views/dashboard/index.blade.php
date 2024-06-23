@@ -104,7 +104,76 @@
                 </div> --}}
 
             </center>
+            @if (Auth::user()->role == 'sopir')
+            <table id="tablePengiriman" class="table table-bordered table-hover">
+                <thead>
+                    <tr align="center">
 
+                        <th>Perusahaan</th>
+                        <th>Tujuan</th>
+                        <th>Sopir</th>
+                        <th>Mobil</th>
+                        {{-- <th>Tanggal Transaksi</th> --}}
+                        {{-- <th>Liter</th> --}}
+                        {{-- <th>Jarak</th> --}}
+                        {{-- <th>Tarif</th> --}}
+                        @if (Auth::user()->role == 'admin')
+                        <th>Total</th>
+                        @endif
+                        <th>Status</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pengiriman as $data)
+                    @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->sopir->id)
+                        <tr>
+                            <td>{{ $data->perusahaan }}</td>
+                            <td>{{ $data->alamat }}</td>
+                            <td>{{ $data->sopir->nama }}</td>
+                            <td>{{ $data->mobil->nopol }}</td>
+                            {{-- <td>{{ $data->date_order }}</td> --}}
+                            {{-- <td>{{ $data->liter }}</td> --}}
+                            {{-- <td>{{ $data->jarak }}</td> --}}
+                            {{-- <td>{{ $data->tarif }}</td> --}}
+                            @if (Auth::user()->role == 'admin')
+                            <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
+                            @endif
+                            <td align="center" style="font-size: 22px">
+                                @if ($data->status == 'pending')
+                                    <span style="color: white"
+                                        class="badge badge-secondary text-capitalize">{{ $data->status }}</span>
+                                @elseif ($data->status == 'pick_up')
+                                    <span style="color: white"
+                                        class="badge badge-success text-capitalize">{{ $data->status }}</span>
+                                @elseif ($data->status == 'on_delivery')
+                                    <span style="color: white"
+                                        class="badge badge-success">{{ $data->status }}</span>
+                                @elseif ($data->status == 'arrived')
+                                    <span style="color: white"
+                                        class="badge badge-primary">{{ $data->status }}</span>
+                                @endif
+                            </td>
+                            <td align="center">
+                                @if (Auth::user()->role === 'sopir')
+                                <a href="{{ route('pengiriman.index') }}"
+                                    class="btn btn-warning mr-2">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                @endif
+                                @if (Auth::user()->role === 'admin')
+                                <a href="{{ url('pengiriman/pdf', $data->id) }}" method="POST"
+                                    class="btn btn-success mr-2">
+                                    <i class="fas fa-print"></i>
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+@endif
         </div>
         <!-- /.container-fluid -->
     </section>

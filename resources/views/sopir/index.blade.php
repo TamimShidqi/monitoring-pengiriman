@@ -25,17 +25,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
+                    @if (Auth::user()->role === 'admin')
                     <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('sopir/create') }}">
                         Tambah Sopir
                     </a>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List Sopir</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tableCuti" class="table table-bordered table-hover">
+                                <table id="tableSopir" class="table table-bordered table-hover">
                                     <thead>
                                         <tr align="center">
 
@@ -45,12 +46,15 @@
                                             <th>Email</th>
                                             <th>No HP</th>
                                             <th>Masa SIM</th>
+                                            @if (Auth::user()->role === 'admin')
                                             <th>Status</th>
                                             <th>AKSI</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($sopir as $data)
+                                        @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->id)
                                             <tr>
                                                 <td>{{ $data->nama }}</td>
                                                 <td>{{ $data->nik }}</td>
@@ -58,6 +62,7 @@
                                                 <td>{{ $data->email }}</td>
                                                 <td>{{ $data->no_hp }}</td>
                                                 <td>{{ $data->masa_sim }}</td>
+                                                @if (Auth::user()->role === 'admin')
                                                 <td align="center" style="font-size: 22px">
                                                     @if ($data->status == 'ready')
                                                         <span style="color: white"
@@ -80,7 +85,9 @@
                                                                 class="fas fa-trash-alt"></i></button>
                                                     </form>
                                                 </td>
+                                                @endif
                                             </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>

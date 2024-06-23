@@ -16,10 +16,7 @@
             </div>
             <div class="pull-left info mb-3">
                 <div class="nama">
-                    <a href="#">Muh Tamim Shidqi</a>
-                    {{-- @if (auth('akuns')->check())
-                        <p>Role: {{ auth('akuns')->user()->role }}</p>
-                    @endif --}}
+                    <a href="#">{{ Auth::user()->sopir->nama }}</a>
                 </div>
             </div>
         </div>
@@ -47,7 +44,6 @@
                     </a>
                 </li>
 
-                {{-- @if (session('akun')[0]['role'] == 'admin') --}}
                 <li class="nav-header">Akun</li>
                 <li class="nav-item">
                     <a href="{{ url('akun') }}" class="nav-link">
@@ -57,6 +53,7 @@
                         </p>
                     </a>
                 </li>
+                @if(auth()->user()->role == 'admin')
                 <li class="nav-header">Mobil</li>
                 <li class="nav-item">
                     <a href="{{ url('mobil') }}" class="nav-link">
@@ -66,6 +63,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-header">Sopir</li>
                 <li class="nav-item">
                     <a href="{{ url('sopir') }}" class="nav-link">
@@ -75,7 +73,6 @@
                         </p>
                     </a>
                 </li>
-                {{-- @endif --}}
                 <li class="nav-header">History</li>
                 <li class="nav-item">
                     <a href="{{ url('history') }}" class="nav-link">

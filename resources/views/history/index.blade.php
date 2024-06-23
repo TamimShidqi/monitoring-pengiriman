@@ -7,7 +7,7 @@
         class="btn btn-success mr-2">
         <i class="fas fa-print"></i>
     </a> --}}
-    <table id="tablePengiriman" class="table table-bordered table-hover">
+    <table id="tableHistory" class="table table-bordered table-hover">
         <thead>
             <tr align="center">
 
@@ -18,14 +18,17 @@
                 <th>Tanggal Transaksi</th>
                 <th>Liter</th>
                 <th>Jarak</th>
+                @if (Auth::user()->role == 'admin')
                 <th>Tarif</th>
                 <th>Total</th>
+                @endif
                 <th>updated_at</th>
                 {{-- <th>Status</th> --}}
                 {{-- <th>AKSI</th> --}}
             </tr>
         </thead>
         @foreach ($history as $data)
+        @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->sopir->id)
         <tbody>
             <tr>
                 <td>{{ $data->perusahaan }}</td>
@@ -35,8 +38,10 @@
                 <td>{{ $data->date_order }}</td>
                 <td>{{ $data->liter }}</td>
                 <td>{{ $data->jarak }}</td>
+                @if (Auth::user()->role == 'admin')
                 <td>{{ $data->tarif }}</td>
                 <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
+                @endif
                 <td>{{ $data->updated_at}}</td>
                 {{-- <td align="center" style="font-size: 22px">
                             @if ($data->status == 'pending')
@@ -72,6 +77,7 @@
                             </a>
                         </td> --}}
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

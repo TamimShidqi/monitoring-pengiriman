@@ -25,10 +25,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
+                    @if (Auth::user()->role == 'admin')
                     <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('pengiriman/create') }}">
                         Tambah Pengiriman
                     </a>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Daftar Pengiriman</h3>
@@ -47,13 +48,16 @@
                                             {{-- <th>Liter</th> --}}
                                             {{-- <th>Jarak</th> --}}
                                             {{-- <th>Tarif</th> --}}
+                                            @if (Auth::user()->role == 'admin')
                                             <th>Total</th>
+                                            @endif
                                             <th>Status</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($pengiriman as $data)
+                                        @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->sopir->id)
                                             <tr>
                                                 <td>{{ $data->perusahaan }}</td>
                                                 <td>{{ $data->alamat }}</td>
@@ -63,7 +67,9 @@
                                                 {{-- <td>{{ $data->liter }}</td> --}}
                                                 {{-- <td>{{ $data->jarak }}</td> --}}
                                                 {{-- <td>{{ $data->tarif }}</td> --}}
+                                                @if (Auth::user()->role == 'admin')
                                                 <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
+                                                @endif
                                                 <td align="center" style="font-size: 22px">
                                                     @if ($data->status == 'pending')
                                                         <span style="color: white"
@@ -80,16 +86,21 @@
                                                     @endif
                                                 </td>
                                                 <td align="center">
+                                                    @if (Auth::user()->role === 'sopir')
                                                     <a href="{{ route('pengiriman.edit', $data->id) }}"
                                                         class="btn btn-warning mr-2">
                                                         <i class="far fa-edit"></i>
                                                     </a>
+                                                    @endif
+                                                    @if (Auth::user()->role === 'admin')
                                                     <a href="{{ url('pengiriman/pdf', $data->id) }}" method="POST"
                                                         class="btn btn-success mr-2">
                                                         <i class="fas fa-print"></i>
                                                     </a>
+                                                    @endif
                                                 </td>
                                             </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>

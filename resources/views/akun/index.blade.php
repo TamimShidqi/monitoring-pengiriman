@@ -25,51 +25,60 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    {{-- <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('akun/create') }}">
+                    @if (Auth::user()->role === 'admin')
+                    <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('akun/create') }}">
                         Tambah Akun
-                    </a> --}}
+                    </a>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List Akun</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tableCuti" class="table table-bordered table-hover">
+                                <table id="tableAkun" class="table table-bordered table-hover">
                                     <thead>
                                         <tr align="center">
 
                                             <th>Nama Lengkap</th>
                                             <th>Email</th>
                                             <th>Password</th>
+                                            @if (Auth::user()->role === 'admin')
                                             <th>Access</th>
-                                            {{-- @if (Auth::akun()->role === 'A') --}}
+                                            @endif
                                             <th>AKSI</th>
-                                            {{-- @endif --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($akun as $data)
-                                            <tr>
-                                                <td>{{ $data->sopir->nama }}</td>
-                                                <td>{{ $data->email }}</td>
-                                                <td>
-                                                    {{ substr(str_repeat('*', strlen($data->password)), 0, 8) }}
-                                                </td>
-                                                <td class="text-capitalize">{{ $data->role }}</td>
-                                                <td align="center">
-                                                    <a href="{{ route('akun.edit', $data->id) }}"
-                                                        class="btn btn-warning mr-2">
-                                                        <i class="far fa-edit"></i>
-                                                    </a>
-                                                    <form style="display: inline"
-                                                        action="{{ route('akun.destroy', $data->id) }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn btn-danger mr-2" type="submit"><i
-                                                                class="fas fa-trash-alt"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                        @if ( Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->sopir->id)
+
+                                        <tr>
+                                            <td>{{ $data->sopir->nama }}</td>
+                                            <td>{{ $data->email }}</td>
+                                            @if (Auth::user()->role === 'admin')
+                                            <td>
+                                                {{ substr(str_repeat('*', strlen($data->password)), 0, 8) }}
+                                            </td>
+                                            @endif
+                                            <td class="text-capitalize">{{ $data->role }}</td>
+                                            <td align="center">
+                                                <a href="{{ route('akun.edit', $data->id) }}"
+                                                    class="btn btn-warning mr-2">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                                @if (Auth::user()->role === 'admin')
+                                                <form style="display: inline"
+                                                action="{{ route('akun.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button class="btn btn-danger mr-2" type="submit"><i
+                                                    class="fas fa-trash-alt"></i></button>
+                                                </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>

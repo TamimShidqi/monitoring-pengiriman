@@ -121,34 +121,10 @@ class PengirimanController extends Controller
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
     }
 
-    // public function pickup($id)
-    // {
-    //     $pengiriman = pengiriman::find($id);
-    //     $pengiriman->status = 'pickup';
-    //     $pengiriman->save();
-
-    //     $sopir = sopir::find($pengiriman->sopir_id);
-    //     $sopir->status = 'ready';
-    //     $sopir->save();
-
-    //     $mobil = mobil::find($pengiriman->mobil_id);
-    //     $mobil->status = 'ready';
-    //     $mobil->save();
-
-    //     return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diambil!');
-    // }
-
-    // public function destroy($id)
-    // {
-    //     Pengiriman::destroy($id);
-    //     return redirect('pengiriman')->with('status', 'Data pengiriman berhasil dihapus!');
-    // }
-
-    public function downloadPdf($id)
+    public function downloadPdf()
     {
-        $pengiriman = pengiriman::find($id)->get();
-        $mpdf = new Mpdf();
-        $mpdf->WriteHTML(view('pengiriman.print', ['pengiriman' => $pengiriman]));
-        $mpdf->Output('download-pdf-' . $pengiriman->id . '.pdf', 'D');
-    }
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('<h1>Hello world!</h1>');
+        $mpdf->Output();
+            }
 }
