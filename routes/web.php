@@ -34,8 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/sopir', SopirController::class);
     Route::resource('/mobil', MobilController::class);
     Route::resource('/pengiriman', PengirimanController::class);
+    Route::get('/pengiriman/pdf/{id}', [PengirimanController::class, 'downloadPdf'])->name('pengiriman.downloadPdf');
     Route::resource('/history', HistoryController::class);
-    Route::get('/pengiriman/cetakpdf', 'PengirimanController@cetakpdf')->name('pengiriman.cetakpdf');
     Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');});
 
 

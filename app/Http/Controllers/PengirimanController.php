@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\mobil;
 use App\Models\pengiriman;
 use App\Models\sopir;
 use Barryvdh\DomPDF\PDF;
+use Mpdf\Mpdf;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class PengirimanController extends Controller
 {
     public function index()
     {
-        $pengiriman = pengiriman::all();
+        $pengiriman = pengiriman::where('status', '!=', 'arrived')->get();
         $sopir = sopir::all();
         $mobil = mobil::all();
         return view('pengiriman.index', compact('pengiriman'));
@@ -94,53 +96,59 @@ class PengirimanController extends Controller
         // $pengiriman->foto = $request->foto;
 
         $sopir = sopir::find($pengiriman->sopir_id);
-        if($request->status == 'arrived'){
+        if ($request->status == 'arrived') {
             $sopir->status = 'ready';
-        }else{
+        } else {
             $sopir->status = 'delivery';
         }
         $sopir->save();
 
         $mobil = mobil::find($pengiriman->mobil_id);
-        if($request->status == 'arrived'){
+        if ($request->status == 'arrived') {
             $mobil->status = 'ready';
-        }else{
+        } else {
             $mobil->status = 'delivery';
         }
         $mobil->save();
+
+        if ($request->status == 'arrived') {
+            $history = new History();
+            $history->pengiriman_id = $pengiriman->id;
+            $history->save();
+        }
         $pengiriman->save();
 
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
     }
 
-    public function pickup($id)
+    // public function pickup($id)
+    // {
+    //     $pengiriman = pengiriman::find($id);
+    //     $pengiriman->status = 'pickup';
+    //     $pengiriman->save();
+
+    //     $sopir = sopir::find($pengiriman->sopir_id);
+    //     $sopir->status = 'ready';
+    //     $sopir->save();
+
+    //     $mobil = mobil::find($pengiriman->mobil_id);
+    //     $mobil->status = 'ready';
+    //     $mobil->save();
+
+    //     return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diambil!');
+    // }
+
+    // public function destroy($id)
+    // {
+    //     Pengiriman::destroy($id);
+    //     return redirect('pengiriman')->with('status', 'Data pengiriman berhasil dihapus!');
+    // }
+
+    public function downloadPdf($id)
     {
-        $pengiriman = pengiriman::find($id);
-        $pengiriman->status = 'pickup';
-        $pengiriman->save();
-
-        $sopir = sopir::find($pengiriman->sopir_id);
-        $sopir->status = 'ready';
-        $sopir->save();
-
-        $mobil = mobil::find($pengiriman->mobil_id);
-        $mobil->status = 'ready';
-        $mobil->save();
-
-        return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diambil!');
-    }
-
-    public function destroy($id)
-    {
-        Pengiriman::destroy($id);
-        return redirect('pengiriman')->with('status', 'Data pengiriman berhasil dihapus!');
-    }
-
-    public function cetakpdf()
-    {
-    	$pengiriman = pengiriman::all();
-
-    	$pdf = PDF::loadview('pengiriman_pdf',['pengiriman'=>$pengiriman]);
-    	return $pdf->download('laporan-pengiriman-pdf');
+        $pengiriman = pengiriman::find($id)->get();
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML(view('pengiriman.print', ['pengiriman' => $pengiriman]));
+        $mpdf->Output('download-pdf-' . $pengiriman->id . '.pdf', 'D');
     }
 }

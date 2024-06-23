@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tableCuti" class="table table-bordered table-hover">
+                                <table id="tablePengiriman" class="table table-bordered table-hover">
                                     <thead>
                                         <tr align="center">
 
@@ -84,15 +84,7 @@
                                                         class="btn btn-warning mr-2">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    <form style="display: inline"
-                                                        action="{{ route('pengiriman.destroy', $data->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn btn-danger mr-2" type="submit"><i
-                                                                class="fas fa-trash-alt"></i></button>
-                                                    </form>
-                                                    <a href="{{ route('pengiriman.cetakpdf', $data->id) }}" method="POST"
+                                                    <a href="{{ url('pengiriman/pdf', $data->id) }}" method="POST"
                                                         class="btn btn-success mr-2">
                                                         <i class="fas fa-print"></i>
                                                     </a>

@@ -16,6 +16,7 @@
             </div>
             <div class="pull-left info mb-3">
                 <div class="nama">
+                    <a href="#">Muh Tamim Shidqi</a>
                     {{-- @if (auth('akuns')->check())
                         <p>Role: {{ auth('akuns')->user()->role }}</p>
                     @endif --}}

@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="liter">Liter:</label>
-                                <input type="number" name="liter" id="liter" class="form-control" required>
+                                <input type="number" name="liter" id="liter" class="form-control" required max='8000'>
                             </div>
                             <div class="form-group">
                                 <label for="jarak">Jarak:</label>

@@ -1,5 +1,3 @@
-@extends('layout.index')
-
 @section('content')
     <div class="container">
         <h2>Detail Pengiriman</h2>
