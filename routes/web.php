@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/pengiriman', PengirimanController::class);
     Route::get('/pengiriman/pdf/{id}', [PengirimanController::class, 'downloadPdf'])->name('pengiriman.downloadPdf');
     Route::resource('/history', HistoryController::class);
-    Route::get('/history/pdf', [HistoryController::class, 'downloadPdf'])->name('history.downloadPdf');
+    Route::get('/history/pdf', [HistoryController::class, 'downloadPdf']);
     Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');});
 
 

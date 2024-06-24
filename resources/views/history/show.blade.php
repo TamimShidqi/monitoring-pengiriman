@@ -1,11 +1,92 @@
-@extends('layout.index')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Riwayat Pengiriman</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
 
-@section('content')
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .badge-secondary {
+            background-color: #6c757d;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+        }
+
+        .fas {
+            margin-right: 5px;
+        }
+
+        .fa-print {
+            color: #fff;
+        }
+
+        .fa-edit {
+            color: #fff;
+        }
+
+        .fa-trash-alt {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
         <h1>Riwayat Pengiriman</h1>
-        <a href="{{ url('history/pdf') }}" method="POST" class="btn btn-success mr-2">
-            <i class="fas fa-print"></i>
-        </a>
         <table id="tableHistory" class="table table-bordered table-hover">
             <thead>
                 <tr align="center">
@@ -81,4 +162,5 @@
             </tbody>
         </table>
     </div>
-@endsection
+</body>
+</html>

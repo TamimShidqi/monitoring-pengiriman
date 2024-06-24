@@ -121,10 +121,11 @@ class PengirimanController extends Controller
         return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
     }
 
-    public function downloadPdf()
+    public function downloadPdf($id)
     {
         $mpdf = new \Mpdf\Mpdf();
-        $mpdf->WriteHTML('<h1>Hello world!</h1>');
-        $mpdf->Output();
+        $pengiriman = pengiriman::find($id);
+        $mpdf->WriteHTML(view('pengiriman.show', ['pengiriman' => $pengiriman]));
+        $mpdf->Output('surat-jalan.pdf', 'I');
             }
 }

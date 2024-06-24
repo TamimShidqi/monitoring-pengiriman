@@ -11,9 +11,8 @@
             padding: 0;
         }
         .container {
-            width: 80%;
+            width: 100%;
             margin: 0 auto;
-            border: 1px solid #000;
             padding: 20px;
         }
         .header, .footer {
@@ -44,47 +43,47 @@
         }
         .signature div {
             width: 45%;
+            text-align: center;
         }
         .signature div p {
             margin: 0;
-            text-align: center;
         }
     </style>
-</head>
+    </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>PT Minyak Sejahtera</h1>
+            <h1>PT. Dul Jaya Sempurna</h1>
             <h2>Surat Jalan Pengiriman Minyak</h2>
-            <p>Jl. Raya Industri No. 123, Jakarta</p>
-            <p>Telp: (021) 123-4567 | Email: info@minyaksejahtera.com</p>
+            <p>JL. Kemarogan RT.11 No. 551 Kemasrindo Kertapati, Palembang</p>
+            <p>Telp: 0821-8446-2270 | Email: mamadia.palembang@yahoo.com</p>
         </div>
 
         <div class="content">
             <table>
                 <tr>
                     <th>No. Surat Jalan</th>
-                    <td>12345</td>
+                    <td>{{$pengiriman->id}}</td>
                     <th>Tanggal</th>
-                    <td>23 Juni 2024</td>
+                    <td>{{$pengiriman->date_order}}</td>
                 </tr>
                 <tr>
-                    <th>Nama Pengirim</th>
-                    <td>PT Minyak Sejahtera</td>
-                    <th>Nama Penerima</th>
-                    <td>PT Distribusi Minyak</td>
+                    <th>Pengirim</th>
+                    <td>PT. Dul Jaya Sempurna</td>
+                    <th>Penerima</th>
+                    <td>{{$pengiriman->perusahaan}}</td>
                 </tr>
                 <tr>
                     <th>Alamat Pengirim</th>
-                    <td>Jl. Raya Industri No. 123, Jakarta</td>
+                    <td>JL. Kemarogan RT.11 No. 551 KemasrindoKertapati, Palembang</td>
                     <th>Alamat Penerima</th>
-                    <td>Jl. Raya Distribusi No. 456, Bandung</td>
+                    <td>{{$pengiriman->alamat}}</td>
                 </tr>
                 <tr>
                     <th>Nomor Kendaraan</th>
-                    <td>B 1234 XYZ</td>
+                    <td>{{$pengiriman->mobil->nopol}}</td>
                     <th>Nama Supir</th>
-                    <td>Joko Susilo</td>
+                    <td>{{$pengiriman->sopir->nama}}</td>
                 </tr>
             </table>
 
@@ -102,30 +101,26 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Minyak Goreng</td>
-                        <td>100</td>
-                        <td>Drum</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Minyak Sawit</td>
-                        <td>200</td>
-                        <td>Drum</td>
+                        <td>Minyak</td>
+                        <td>{{$pengiriman->liter}}</td>
+                        <td>Liter</td>
                         <td>-</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+<br>
         <div class="signature">
             <div>
-                <p>Pengirim</p>
+                <p>Sopir</p>
+                <br><br>
                 <p>________________________</p>
                 <p>(Nama Pengirim)</p>
             </div>
+            <br>
             <div>
                 <p>Penerima</p>
+                <br><br>
                 <p>________________________</p>
                 <p>(Nama Penerima)</p>
             </div>

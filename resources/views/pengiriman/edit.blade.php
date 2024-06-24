@@ -19,7 +19,7 @@
                                 <input type="hidden" name="_method" value="PATCH">
                                 <form class="form-horizontal">
                                     <div align="center">
-                                        <label class="mt-5" for="">Apakah Anda Yakin Untuk Menerima Pengiriman ke
+                                        <label class="mt-5" for="">Konfirmasi untuk melakukan Pengiriman ke
                                             Perusahaan :
                                             <br>
                                             {{ $pengiriman->perusahaan }} ?</label>
