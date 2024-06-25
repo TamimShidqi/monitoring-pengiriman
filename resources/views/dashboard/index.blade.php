@@ -104,7 +104,7 @@
                 </div> --}}
 
             </center>
-            @if (Auth::user()->role == 'sopir')
+            @if (Auth::user()->role == 'sopir'  && $pengiriman->count() > 0)
             <table id="tablePengiriman" class="table table-bordered table-hover">
                 <thead>
                     <tr align="center">

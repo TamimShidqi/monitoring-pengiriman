@@ -46,7 +46,7 @@
             text-align: center;
         }
         .signature div p {
-            margin: 0;
+            margin: left;
         }
     </style>
     </head>

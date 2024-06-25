@@ -68,11 +68,20 @@
                                                 class="form-control">
                                         </div>
                                     </div>
+                                    @if (Auth::user()->role === 'admin')
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="tgl_lahir">Masa SIM</label>
                                         <div class="col-sm-2">
                                             <input type="date" value="{{ $sopir->masa_sim }}" name="masa_sim"
                                                 class="form-control">
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="tgl_lahir">Masa SIM</label>
+                                        <div class="col-sm-2">
+                                            <input type="date" value="{{ $sopir->masa_sim }}" name="masa_sim"
+                                                class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row" hidden>

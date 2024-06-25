@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Sopir</li>
                     </ol>
                 </div>
@@ -26,9 +26,9 @@
             <div class="row">
                 <div class="col-12">
                     @if (Auth::user()->role === 'admin')
-                    <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('sopir/create') }}">
-                        Tambah Sopir
-                    </a>
+                        <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('sopir/create') }}">
+                            Tambah Sopir
+                        </a>
                     @endif
                     <div class="card">
                         <div class="card-header">
@@ -47,46 +47,49 @@
                                             <th>No HP</th>
                                             <th>Masa SIM</th>
                                             @if (Auth::user()->role === 'admin')
-                                            <th>Status</th>
-                                            <th>AKSI</th>
+                                                <th>Status</th>
                                             @endif
+                                            <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($sopir as $data)
-                                        @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->id)
-                                            <tr>
-                                                <td>{{ $data->nama }}</td>
-                                                <td>{{ $data->nik }}</td>
-                                                <td>{{ $data->tgl_lahir }}</td>
-                                                <td>{{ $data->email }}</td>
-                                                <td>{{ $data->no_hp }}</td>
-                                                <td>{{ $data->masa_sim }}</td>
-                                                @if (Auth::user()->role === 'admin')
-                                                <td align="center" style="font-size: 22px">
-                                                    @if ($data->status == 'ready')
-                                                        <span style="color: white"
-                                                            class="badge badge-primary text-capitalize">{{ $data->status }}</span>
-                                                    @elseif ($data->status == 'delivery')
-                                                        <span style="color: white"
-                                                            class="badge badge-success text-capitalize">{{ $data->status }}</span>
-                                                    @endif
-                                                </td>
-                                                <td align="center">
-                                                    <a href="{{ route('sopir.edit', $data->id) }}"
-                                                        class="btn btn-warning mr-2">
-                                                        <i class="far fa-edit"></i>
-                                                    </a>
-                                                    <form style="display: inline"
-                                                        action="{{ route('sopir.destroy', $data->id) }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn btn-danger mr-2" type="submit"><i
+                                            @if (Auth::user()->role === 'admin' or Auth::user()->sopir->id == $data->id)
+                                                <tr>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td>{{ $data->nik }}</td>
+                                                    <td>{{ $data->tgl_lahir }}</td>
+                                                    <td>{{ $data->email }}</td>
+                                                    <td>{{ $data->no_hp }}</td>
+                                                    <td>{{ $data->masa_sim }}</td>
+                                                    @if (Auth::user()->role === 'admin')
+                                                        <td align="center" style="font-size: 22px">
+                                                            @if ($data->status == 'ready')
+                                                                <span style="color: white"
+                                                                    class="badge badge-primary text-capitalize">{{ $data->status }}</span>
+                                                            @elseif ($data->status == 'delivery')
+                                                                <span style="color: white"
+                                                                    class="badge badge-success text-capitalize">{{ $data->status }}</span>
+                                                            @endif
+                                                        </td>
+                                                        @endif
+                                                        <td align="center">
+                                                            <a href="{{ route('sopir.edit', $data->id) }}"
+                                                                class="btn btn-warning mr-2">
+                                                                <i class="far fa-edit"></i>
+                                                            </a>
+                                                            @if (Auth::user()->role === 'admin')
+                                                            <form style="display: inline"
+                                                            action="{{ route('sopir.destroy', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button class="btn btn-danger mr-2" type="submit"><i
                                                                 class="fas fa-trash-alt"></i></button>
-                                                    </form>
-                                                </td>
-                                                @endif
-                                            </tr>
+                                                            </form>
+                                                            @endif
+                                                        </td>
+                                                </tr>
                                             @endif
                                         @endforeach
                                     </tbody>

@@ -16,7 +16,7 @@ class AkunSeeder extends Seeder
         DB::table('akun')->insert([
             'sopir_id' => 1,
             'username' => 'admin',
-            'password' => 'admin',
+            'password' => bcrypt('admin'),
             'role' => 'admin',
         ]);
     }

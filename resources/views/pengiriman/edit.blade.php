@@ -91,11 +91,13 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Konfirmasi Pengiriman</h3>
                                 </div>
-                                <input type="hidden" name="_method" value="PATCH">
-                                <video id="video" width="480" height="480" autoplay></video>
-                                <canvas class="col-sm-3" id="canvas" width="480" height="360"></canvas>
-                                <input type="hidden" name="status" value="arrived">
-                                <button id="snap" class="btn btn-primary">Capture</button>
+                                <div align="center">
+                                    <input type="hidden" name="_method" value="PATCH">
+                                    <video id="video" width="480" height="480" autoplay></video>
+                                    <canvas class="col-sm-3" id="canvas" width="480" height="360"></canvas>
+                                    <input type="hidden" name="status" value="arrived">
+                                    <button id="snap" class="btn btn-primary">Capture</button>
+                                </div>
                             </div>
                         </div>
                     </div>
