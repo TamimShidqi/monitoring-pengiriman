@@ -25,11 +25,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    @if (Auth::user()->role === 'admin')
+                    {{-- @if (Auth::user()->role === 'admin')
                     <a style="width: 200px" class="btn btn-primary mb-3" href="{{ url('akun/create') }}">
                         Tambah Akun
                     </a>
-                    @endif
+                    @endif --}}
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">List Akun</h3>

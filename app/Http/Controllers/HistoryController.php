@@ -9,10 +9,15 @@ use Mpdf\Mpdf;
 
 class HistoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $history = History::all();
-        $history = pengiriman::where('status', 'arrived')->get();
+        $query = Pengiriman::where('status', 'arrived');
+
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $query->whereBetween('date_order', [$request->start_date, $request->end_date]);
+        }
+
+        $history = $query->orderBy('updated_at', 'desc')->get();
         return view('history.index', compact('history'));
     }
 
@@ -28,5 +33,4 @@ class HistoryController extends Controller
         $mpdf->WriteHTML(view('history.show', ['history' => $history]));
         $mpdf->Output('riwayat-pengiriman.pdf', 'D');
     }
-
 }

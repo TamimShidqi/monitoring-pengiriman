@@ -16,11 +16,13 @@ class pengiriman extends Model
         'perusahaan',
         'alamat',
         'date_order',
+        'jenis',
         'liter',
         'jarak',
         'tarif',
         'total',
         'status',
+        'foto',
     ];
 
     public function sopir()

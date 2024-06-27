@@ -11,7 +11,7 @@ class SopirController extends Controller
 {
     public function index(Request $request)
     {
-        $sopir = sopir::all();
+        $sopir = sopir::where('nama', '!=', 'admin')->get();
         $akun = Akun::all();
         return view('sopir.index', compact('sopir'));
     }
@@ -73,7 +73,7 @@ class SopirController extends Controller
 
         $akun = Akun::where('sopir_id', $sopir->id)->first();
         $akun->email = $sopir->email;
-        
+
         $akun->save();
         return redirect('sopir')->with('success', "Data Berhasil Diupdate");
     }

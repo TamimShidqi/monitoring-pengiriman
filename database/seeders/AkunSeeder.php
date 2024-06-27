@@ -15,9 +15,17 @@ class AkunSeeder extends Seeder
     {
         DB::table('akun')->insert([
             'sopir_id' => 1,
-            'username' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
             'role' => 'admin',
         ]);
+
+        DB::table('akun')->insert([
+            'sopir_id' => 2,
+            'email' => 'mtamimshidqi27@gmail.com',
+            'password' => bcrypt('tamim'),
+            'role' => 'sopir',
+        ]);
+
     }
 }

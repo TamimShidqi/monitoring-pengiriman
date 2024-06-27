@@ -19,5 +19,11 @@ class Akun extends Authenticatable
         return $this->belongsTo(Akun::class);
     }
 
+    public function pengiriman()
+{
+    return $this->hasMany(Pengiriman::class);
+}
+
+
 
 }

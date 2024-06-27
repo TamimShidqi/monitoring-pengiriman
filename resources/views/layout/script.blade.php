@@ -46,3 +46,4 @@
 <script src="{{ asset('AdminLTE') }}/plugins/select2/js/select2.full.min.js"></script>
 <!-- Daterange picker -->
 <link rel="{{ asset('stylesheet" href="plugins/daterangepicker/daterangepicker.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/laravel-webcam@latest/dist/laravel-webcam.js"></script>

@@ -77,13 +77,15 @@
                                         </div>
                                     </div>
                                     @endif
+                                    @if (Auth::user()->role === 'sopir')
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="tgl_lahir">Masa SIM</label>
+                                        <label class="col-sm-2 col-form-label" for="masa_sim">Masa SIM</label>
                                         <div class="col-sm-2">
                                             <input type="date" value="{{ $sopir->masa_sim }}" name="masa_sim"
-                                                class="form-control" readonly>
+                                            class="form-control" readonly>
                                         </div>
                                     </div>
+                                    @endif
                                     <div class="form-group row" hidden>
                                         <label class="col-sm-2 col-form-label mt-2">Status</label>
                                         <div class="col-sm-2">

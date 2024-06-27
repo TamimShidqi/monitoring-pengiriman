@@ -53,6 +53,7 @@
 <body>
     <div class="container">
         <div class="header">
+            {{-- <img src="public/logo.png" style="position: absolute; left: 10px; top: 10px; width: 100px;"> --}}
             <h1>PT. Dul Jaya Sempurna</h1>
             <h2>Surat Jalan Pengiriman Minyak</h2>
             <p>JL. Kemarogan RT.11 No. 551 Kemasrindo Kertapati, Palembang</p>
@@ -93,40 +94,41 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Barang</th>
+                        <th>Keterangan</th>
                         <th>Jumlah</th>
                         <th>Satuan</th>
-                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>Minyak</td>
+                        <td class="text-capitalize">{{$pengiriman->jenis}}</td>
                         <td>{{$pengiriman->liter}}</td>
                         <td>Liter</td>
-                        <td>-</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 <br>
         <div class="signature">
-            <div>
+            {{-- <div>
                 <p>Sopir</p>
                 <br><br>
                 <p>________________________</p>
                 <p>(Nama Pengirim)</p>
             </div>
-            <br>
+            <br> --}}
             <div>
                 <p>Penerima</p>
                 <br><br>
                 <p>________________________</p>
-                <p>(Nama Penerima)</p>
+                {{-- <p>(Nama Penerima)</p> --}}
             </div>
         </div>
 
         <div class="footer">
+            <br><br>
             <p>Terima kasih atas kerjasamanya.</p>
         </div>
     </div>

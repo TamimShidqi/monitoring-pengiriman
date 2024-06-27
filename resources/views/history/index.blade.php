@@ -3,13 +3,34 @@
 @section('content')
     <div class="container">
         <h1>Riwayat Pengiriman</h1>
-        <a href="{{ url('history/pdf') }}" method="POST" class="btn btn-success mr-2">
-            <i class="fas fa-print"></i>
-        </a>
+        @if (Auth::user()->role == 'admin')
+            <a href="{{ url('history/pdf') }}" method="POST" class="btn btn-success mr-2">
+                <i class="fas fa-print"></i>
+            </a>
+        @endif
+
+        <!-- Form untuk filter berdasarkan date_order -->
+        <form method="GET" action="{{ url('history') }}">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="start_date">Tanggal Mulai</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date"
+                        value="{{ request('start_date') }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="end_date">Tanggal Selesai</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date"
+                        value="{{ request('end_date') }}">
+                </div>
+                <div class="form-group col-md-4 align-self-end">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+
         <table id="tableHistory" class="table table-bordered table-hover">
             <thead>
                 <tr align="center">
-
                     <th>Perusahaan</th>
                     <th>Tujuan</th>
                     <th>Sopir</th>
@@ -20,10 +41,9 @@
                     @if (Auth::user()->role == 'admin')
                         <th>Tarif</th>
                         <th>Total</th>
+                        <th>Foto</th>
                     @endif
                     <th>updated_at</th>
-                    {{-- <th>Status</th> --}}
-                    {{-- <th>AKSI</th> --}}
                 </tr>
             </thead>
             @foreach ($history as $data)
@@ -40,41 +60,11 @@
                             @if (Auth::user()->role == 'admin')
                                 <td>{{ $data->tarif }}</td>
                                 <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
+                                <td> <img style="width: 40px"
+                                        src="{{ $data->foto ? asset('fotos/' . $data->foto) : asset('assets/') }}">
+                                </td>
                             @endif
                             <td>{{ $data->updated_at }}</td>
-                            {{-- <td align="center" style="font-size: 22px">
-                            @if ($data->status == 'pending')
-                                <span style="color: white"
-                                    class="badge badge-secondary text-capitalize">{{ $data->status }}</span>
-                            @elseif ($data->status == 'pick_up')
-                                <span style="color: white"
-                                    class="badge badge-success text-capitalize">{{ $data->status }}</span>
-                            @elseif ($data->status == 'on_delivery')
-                                <span style="color: white"
-                                    class="badge badge-success">{{ $data->status }}</span>
-                            @elseif ($data->status == 'arrived')
-                                <span style="color: white"
-                                    class="badge badge-primary">{{ $data->status }}</span>
-                            @endif
-                        </td> --}}
-                            {{-- <td align="center">
-                            <a href="{{ route('pengiriman.edit', $data->id) }}"
-                                class="btn btn-warning mr-2">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <form style="display: inline"
-                                action="{{ route('pengiriman.destroy', $data->id) }}"
-                                method="POST">
-                                @csrf
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger mr-2" type="submit"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </form>
-                            <a href="{{ route('pengiriman.cetakpdf', $data->id) }}" method="POST"
-                                class="btn btn-success mr-2">
-                                <i class="fas fa-print"></i>
-                            </a>
-                        </td> --}}
                         </tr>
                 @endif
             @endforeach

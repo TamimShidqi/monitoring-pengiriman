@@ -24,6 +24,16 @@
                                             <br>
                                             {{ $pengiriman->perusahaan }} ?</label>
                                     </div>
+                                    <input type="hidden" name="sopir_id" value="{{ $pengiriman->sopir_id }}">
+                                    <input type="hidden" name="mobil_id" value="{{ $pengiriman->mobil_id }}">
+                                    <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
+                                    <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
+                                    <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
+                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
+                                    <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
+                                    <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">
+                                    <input type="hidden" name="total" value="{{ $pengiriman->total }}">
                                     <div class="form-group row">
                                         <div class="col-sm d-flex justify-content-center">
                                             <fieldset class="row ml-2">
@@ -66,16 +76,65 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <!-- left column -->
                         <div class="col mr-5 ml-5">
+                            <!-- general form elements -->
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Konfirmasi Pengiriman</h3>
+                                    <h3 class="card-title">Konfirmasi Status Pengiriman</h3>
                                 </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
                                 <input type="hidden" name="_method" value="PATCH">
-                                <video id="video" width="480" height="480" autoplay></video>
-                                <canvas class="col-sm-2" id="canvas" width="480" height="360"></canvas>
-                                <input type="hidden" name="status" value="on_delivery">
-                                <button id="snap" class="btn btn-primary">Capture</button>
+                                <form class="form-horizontal">
+                                    <div align="center">
+                                        <label class="mt-5" for="">Konfirmasi untuk Mengirim ke
+                                            Perusahaan :
+                                            <br>
+                                            {{ $pengiriman->perusahaan }} ?</label>
+                                    </div>
+                                    <input type="hidden" name="sopir_id" value="{{ $pengiriman->sopir_id }}">
+                                    <input type="hidden" name="mobil_id" value="{{ $pengiriman->mobil_id }}">
+                                    <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
+                                    <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
+                                    <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
+                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
+                                    <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
+                                    <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">
+                                    <input type="hidden" name="total" value="{{ $pengiriman->total }}">
+                                    <div class="form-group row">
+                                        <div class="col-sm d-flex justify-content-center">
+                                            <fieldset class="row ml-2">
+                                                <div class="mr-4 ">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status"
+                                                            id="statusTerima" value="on_delivery"
+                                                            {{ $pengiriman->status == 'on_delivery' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="statusTerima">
+                                                            Kirim
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status"
+                                                            id="statusCancel" value="pick_up"
+                                                            {{ $pengiriman->status == 'pick_up' ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="statusCancel">
+                                                            Cancel
+                                                        </label>
+                                                    </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <br>
+                            <div align="center" class="mb-4">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ url('pengiriman') }}" class="btn btn-danger">
+                                    Batal
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -93,11 +152,26 @@
                                 </div>
                                 <div align="center">
                                     <input type="hidden" name="_method" value="PATCH">
-                                    <video id="video" width="480" height="480" autoplay></video>
-                                    <canvas class="col-sm-3" id="canvas" width="480" height="360"></canvas>
-                                    <input type="hidden" name="status" value="arrived">
-                                    <button id="snap" class="btn btn-primary">Capture</button>
+                                    <input type="hidden" name="sopir_id" value="{{ $pengiriman->sopir_id }}">
+                                    <input type="hidden" name="mobil_id" value="{{ $pengiriman->mobil_id }}">
+                                    <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
+                                    <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
+                                    <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
+                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
+                                    <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
+                                    <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">
+                                    <input type="hidden" name="total" value="{{ $pengiriman->total }}">
+                                    <input type="hidden" name="status" value="arrived" required>
+                                    <input type="file" name="foto">
+                                    {{-- <video id="video" width="640" height="480" autoplay></video>
+                                    <canvas id="canvas" width="640" height="480"></canvas> --}}
                                 </div>
+                            </div>
+                            <br>
+                            <div align="center" class="mb-4">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ url('pengiriman') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
                     </div>
@@ -107,29 +181,50 @@
     </form>
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
     <script>
         const video = document.getElementById('video');
-
-        // Dapatkan akses ke kamera
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({
-                video: true
-            }).then(function(stream) {
-                video.srcObject = stream;
-                video.play();
-            }).catch(function(error) {
-                console.log("Ada masalah mengakses kamera: ", error);
-            });
-        }
+        const canvas = document.getElementById('canvas');
         const snapButton = document.getElementById('snap');
-        snapButton.addEventListener('click', capture);
 
-        function capture() {
-            const canvas = document.getElementById('canvas');
-            const context = canvas.getContext('2d');
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            localStorage.setItem('image', canvas.toDataURL());
-        }
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(stream => {
+                video.srcObject = stream;
+            });
+
+        snapButton.addEventListener('click', () => {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+            formData.append('foto', imageData); // Tambahkan data foto ke FormData
+
+            fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content')
+                    },
+                    body: formData // Kirim FormData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // Refresh halaman atau tampilkan pesan sukses
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Tampilkan pesan error kepada pengguna
+                });
+        });
     </script>
-@endpush
+@endpush --}}

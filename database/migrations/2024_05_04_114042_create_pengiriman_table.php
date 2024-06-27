@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('perusahaan', 100);
             $table->string('alamat', 100);
             $table->date('date_order');
+            $table->enum('jenis', ['pertamax', 'dexlite', 'pertalite', 'solar']);
             $table->integer('liter');
             $table->integer('jarak');
             $table->integer('tarif');
