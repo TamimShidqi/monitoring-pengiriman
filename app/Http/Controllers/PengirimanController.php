@@ -6,7 +6,6 @@ use App\Models\History;
 use App\Models\mobil;
 use App\Models\pengiriman;
 use App\Models\sopir;
-use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Mpdf\Mpdf;
 use Illuminate\Support\Facades\File;
