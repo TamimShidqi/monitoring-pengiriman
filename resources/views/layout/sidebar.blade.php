@@ -26,7 +26,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ url('dashboard') }}" class="nav-link ">
+                    <a href="{{ url('dashboard') }}" class="nav-link {{ (Request::is('dashboard') ? 'active' : '') }} ">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
@@ -36,7 +36,7 @@
                 {{-- <li class="nav-header">Pengiriman</li> --}}
                 <br>
                 <li class="nav-item">
-                    <a href="{{ url('pengiriman') }}" class="nav-link">
+                    <a href="{{ url('pengiriman') }}" class="nav-link {{ (Request::is('pengiriman') ? 'active' : '') }} ">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Data Pengiriman
@@ -46,7 +46,7 @@
 
                 <li class="nav-header">Akun</li>
                 <li class="nav-item">
-                    <a href="{{ url('akun') }}" class="nav-link">
+                    <a href="{{ url('akun') }}" class="nav-link {{ (Request::is('akun') ? 'active' : '') }} ">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Data Akun
@@ -56,7 +56,7 @@
                 @if(auth()->user()->role == 'admin')
                 <li class="nav-header">Mobil</li>
                 <li class="nav-item">
-                    <a href="{{ url('mobil') }}" class="nav-link">
+                    <a href="{{ url('mobil') }}" class="nav-link {{ (Request::is('mobil') ? 'active' : '') }} ">
                         <i class="nav-icon fas fa-wrench"></i>
                         <p>
                             Data Mobil
@@ -66,7 +66,7 @@
                 @endif
                 <li class="nav-header">Sopir</li>
                 <li class="nav-item">
-                    <a href="{{ url('sopir') }}" class="nav-link">
+                    <a href="{{ url('sopir') }}" class="nav-link {{ (Request::is('sopir') ? 'active' : '') }} ">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Sopir
@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-header">History</li>
                 <li class="nav-item">
-                    <a href="{{ url('history') }}" class="nav-link">
+                    <a href="{{ url('history') }}" class="nav-link {{ (Request::is('history') ? 'active' : '') }} ">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             History

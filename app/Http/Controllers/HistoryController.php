@@ -24,13 +24,13 @@ class HistoryController extends Controller
     public function show()
     {
         $history = pengiriman::where('status', 'arrived')->get();
-        return view('history.show', compact('history'));
+        return view("history.show", compact('history'));
     }
-    public function downloadPdf()
+    public function download_pdf()
     {
         $mpdf = new \Mpdf\Mpdf();
         $history = pengiriman::where('status', 'arrived')->get();
-        $mpdf->WriteHTML(view('history.show', ['history' => $history]));
-        $mpdf->Output('riwayat-pengiriman.pdf', 'D');
+        $mpdf->WriteHTML(view("history.show", ['history' => $history]));
+        $mpdf->Output('download-history-pengiriman.pdf', 'I');
     }
 }

@@ -25,7 +25,7 @@ class DashboardController extends Controller
 
         $graph = Pengiriman::select(
             DB::raw('MONTH(date_order) as bulan'),
-            DB::raw('sum(total) as total')
+            DB::raw('count(id) as total')
         )
             ->groupBy('bulan')
             ->get();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nopol', 9);
             $table->enum('status', ['ready', 'delivery'])->default('ready');
-            $table->enum('kapasitas', [8000, 16000])->default(8000);
+            $table->enum('kapasitas', [8000])->default(8000);
             $table->date('masa_stnk');
             $table->timestamps();
         });

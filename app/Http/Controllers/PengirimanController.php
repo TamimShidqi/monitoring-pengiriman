@@ -57,16 +57,6 @@ class PengirimanController extends Controller
         $pengiriman->tarif = $request->tarif;
         $total = $request->liter * $request->jarak * $request->tarif;
         $pengiriman->total = $total;
-        // if($request->file('foto')){
-        //     $file = $request->file('foto');
-        //     $nama_file = $pengiriman->nama.'.'.$file->getClientOriginalExtension();
-        //     $file->move('a_fotos', $nama_file);
-        //     $pengiriman->foto=$nama_file;
-
-        //     File::delete('fotos', $pengiriman->foto);
-        //     $pengiriman->foto=$nama_file;
-        // }
-        // $pengiriman->status = $request->status;
 
         $sopir = sopir::find($request->sopir_id);
         $sopir->status = 'delivery';

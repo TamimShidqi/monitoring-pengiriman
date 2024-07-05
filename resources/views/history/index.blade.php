@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Riwayat Pengiriman</h1>
         @if (Auth::user()->role == 'admin')
-            <a href="{{ url('history/pdf') }}" method="POST" class="btn btn-success mr-2">
+            <a href="{{ url('download-pdf') }}" class="btn btn-success mr-2">
                 <i class="fas fa-print"></i>
             </a>
         @endif

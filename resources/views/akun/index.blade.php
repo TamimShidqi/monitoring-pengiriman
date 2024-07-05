@@ -56,12 +56,12 @@
                                         <tr>
                                             <td>{{ $data->sopir->nama }}</td>
                                             <td>{{ $data->email }}</td>
-                                            @if (Auth::user()->role === 'admin')
                                             <td>
                                                 {{ substr(str_repeat('*', strlen($data->password)), 0, 8) }}
                                             </td>
-                                            @endif
+                                            @if (Auth::user()->role === 'admin')
                                             <td class="text-capitalize">{{ $data->role }}</td>
+                                            @endif
                                             <td align="center">
                                                 <a href="{{ route('akun.edit', $data->id) }}"
                                                     class="btn btn-warning mr-2">

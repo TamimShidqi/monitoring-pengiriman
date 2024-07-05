@@ -22,36 +22,6 @@ class AkunController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $sopir = sopir::all();
-        return view('akun.create', compact('sopir'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $akun = new Akun();
-        $akun->email = $request->email;
-        $akun->sopir_id = $request->sopir_id;
-        $akun->email = $request->email;
-        $akun->password = Hash::make($request->password);
-        $akun->role = $request->role;
-        $akun->save();
-        return redirect('akun')->with('success', "Data Berhasil Disimpan");
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Akun  $akun

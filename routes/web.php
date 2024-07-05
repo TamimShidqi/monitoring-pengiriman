@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PengirimanController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SopirController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/pengiriman', PengirimanController::class);
     Route::get('/pengiriman/pdf/{id}', [PengirimanController::class, 'downloadPdf'])->name('pengiriman.downloadPdf');
     Route::resource('/history', HistoryController::class);
-    Route::get('/history/pdf', [HistoryController::class, 'downloadPdf']);
-    Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');});
+    Route::get('/download-pdf', [HistoryController::class, 'download_pdf']);
+    Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
+});
 
 
 require __DIR__ . '/auth.php';

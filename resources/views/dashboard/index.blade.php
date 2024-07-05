@@ -204,7 +204,7 @@
         data: {
             labels: data.map(row => row.bulan),
             datasets: [{
-                label: 'Total Pendapatan',
+                label: 'Total Pengiriman',
                 data: data.map(row => row.total),
                 backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna bar
                 borderColor: 'rgba(54, 162, 235, 1)', // Warna border
