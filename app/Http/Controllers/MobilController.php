@@ -32,9 +32,9 @@ class MobilController extends Controller
 
     public function edit($id)
     {
-        if(mobil::where('status', 'delivery')->first()){
-            return redirect('mobil')->with('error', "Tidak Bisa Mengedit Mobil Yang Sedang Melakukan Pengiriman");
-        }
+        // if(mobil::where('status', 'delivery')->first()){
+        //     return redirect('mobil')->with('error', "Tidak Bisa Mengedit Mobil Yang Sedang Melakukan Pengiriman");
+        // }
         $mobil = mobil::find($id);
         return view('mobil.edit', compact('mobil'));
     }
