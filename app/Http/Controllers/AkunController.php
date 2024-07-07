@@ -47,7 +47,6 @@ class AkunController extends Controller
         $akun = Akun::with('sopir')->find($id);
         return view('akun.edit', compact('akun','sopir'));
 
-        // return view('akun.edit', ['akun' => $akun]);
     }
 
     /**

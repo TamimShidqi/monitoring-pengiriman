@@ -10,18 +10,27 @@ class MobilController extends Controller
 {
     public function index(request $request)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboard');
+        }
         $mobil = mobil::all();
         return view('mobil.index', compact('mobil'));
     }
 
     public function create()
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboard');
+        }
         $mobil = mobil::all();
         return view('mobil.create', compact('mobil'));
     }
 
     public function store(request $request)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboard');
+        }
         $mobil = new mobil();
         $mobil->nopol = $request->nopol;
         $mobil->status = $request->status;
@@ -33,15 +42,18 @@ class MobilController extends Controller
 
     public function edit($id)
     {
-        // if(mobil::where('status', 'delivery')->first()){
-        //     return redirect('mobil')->with('error', "Tidak Bisa Mengedit Mobil Yang Sedang Melakukan Pengiriman");
-        // }
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboard');
+        }
         $mobil = mobil::find($id);
         return view('mobil.edit', compact('mobil'));
     }
 
     public function update(request $request, $id)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboar');
+        }
         $mobil = mobil::find($id);
         $mobil->nopol = $request->nopol;
         $mobil->status = $request->status;
@@ -53,6 +65,9 @@ class MobilController extends Controller
 
     public function destroy($id)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('dashboard');
+        }
 
         if (mobil::find($id) == null) {
             return redirect('mobil')->with('error', "Data Tidak Ditemukan");

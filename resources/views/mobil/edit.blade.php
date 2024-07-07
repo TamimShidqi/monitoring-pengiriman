@@ -58,9 +58,6 @@
                                                 <div class="col-sm-2 form-group">
                                                     <select class="form-control" id="status" name="status" required readonly>
                                                         <option value="{{ $mobil->status }}" hidden>{{ $mobil->status }}</option>
-                                                        {{-- <option>~ Pilih Kapasitas ~</option>
-                                                        <option value="8000">8000 Liter</option>
-                                                        <option value="16000">16000 Liter</option> --}}
                                                     </select>
                                                 </div>
                                             </div>

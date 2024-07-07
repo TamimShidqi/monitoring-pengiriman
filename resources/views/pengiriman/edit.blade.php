@@ -164,8 +164,6 @@
                                     <input type="hidden" name="total" value="{{ $pengiriman->total }}">
                                     <input type="hidden" name="status" value="arrived" required>
                                     <input type="file" name="foto">
-                                    {{-- <video id="video" width="640" height="480" autoplay></video>
-                                    <canvas id="canvas" width="640" height="480"></canvas> --}}
                                 </div>
                             </div>
                             <br>
@@ -180,51 +178,3 @@
         @endif
     </form>
 @endsection
-
-{{-- @push('scripts')
-    <script>
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const snapButton = document.getElementById('snap');
-
-        navigator.mediaDevices.getUserMedia({
-                video: true
-            })
-            .then(stream => {
-                video.srcObject = stream;
-            });
-
-        snapButton.addEventListener('click', () => {
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = canvas.toDataURL('image/jpeg');
-
-            const form = document.querySelector('form');
-            const formData = new FormData(form);
-            formData.append('foto', imageData); // Tambahkan data foto ke FormData
-
-            fetch(form.action, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    },
-                    body: formData // Kirim FormData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                    // Refresh halaman atau tampilkan pesan sukses
-                    location.reload();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Tampilkan pesan error kepada pengguna
-                });
-        });
-    </script>
-@endpush --}}

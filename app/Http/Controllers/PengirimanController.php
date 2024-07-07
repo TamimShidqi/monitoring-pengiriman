@@ -24,11 +24,9 @@ class PengirimanController extends Controller
             ->orderBy('status', 'desc')
             ->get();
 
-        // Ambil data sopir dan mobil
         $sopir = Sopir::all();
         $mobil = Mobil::all();
 
-        // Kirim data ke view
         return view('pengiriman.index', compact('pengiriman', 'sopir', 'mobil'));
     }
 
@@ -103,7 +101,6 @@ class PengirimanController extends Controller
 
         $pengiriman = pengiriman::find($id);
 
-        // Update data pengiriman (kecuali foto)
         $pengiriman->sopir_id = $request->sopir_id;
         $pengiriman->mobil_id = $request->mobil_id;
         $pengiriman->perusahaan = $request->perusahaan;
@@ -115,26 +112,20 @@ class PengirimanController extends Controller
         $pengiriman->tarif = $request->tarif;
         $pengiriman->status = $request->status;
 
-        // Handle foto jika ada
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
             if ($pengiriman->foto) {
                 Storage::delete($pengiriman->foto);
             }
 
-            // Simpan foto baru
             $imageName = time().'.'.$request->foto->extension();
             $request->foto->move(public_path('fotos'), $imageName);
                 $pengiriman->foto = $imageName;
         }
 
-        // Hitung total hanya sekali
         $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
 
-        // Simpan perubahan
         $pengiriman->save();
 
-        // Update status sopir dan mobil
         $sopir = sopir::find($pengiriman->sopir_id);
         $mobil = mobil::find($pengiriman->mobil_id);
 
@@ -148,7 +139,6 @@ class PengirimanController extends Controller
         $sopir->save();
         $mobil->save();
 
-        // Buat history jika status 'arrived'
         if ($request->status == 'arrived') {
             $history = new History();
             $history->pengiriman_id = $pengiriman->id;

@@ -48,10 +48,6 @@
                                             <th>Sopir</th>
                                             <th>Mobil</th>
                                             <th>Jenis</th>
-                                            {{-- <th>Tanggal Transaksi</th> --}}
-                                            {{-- <th>Liter</th> --}}
-                                            {{-- <th>Jarak</th> --}}
-                                            {{-- <th>Tarif</th> --}}
                                             @if (Auth::user()->role == 'admin')
                                                 <th>Total</th>
                                             @endif
@@ -68,10 +64,6 @@
                                                     <td>{{ $data->sopir->nama }}</td>
                                                     <td>{{ $data->mobil->nopol }}</td>
                                                     <td class="text-capitalize">{{ $data->jenis }}</td>
-                                                    {{-- <td>{{ $data->date_order }}</td> --}}
-                                                    {{-- <td>{{ $data->liter }}</td> --}}
-                                                    {{-- <td>{{ $data->jarak }}</td> --}}
-                                                    {{-- <td>{{ $data->tarif }}</td> --}}
                                                     @if (Auth::user()->role == 'admin')
                                                         <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
                                                     @endif

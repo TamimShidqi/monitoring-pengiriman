@@ -180,17 +180,6 @@
                             untuk memegang teguh kepercayaan dari pelanggan.</p>
                     </div>
                 </div>
-                {{-- <div class="card mt-5 shadow p-3 mb-5 bg-body rounded" style="max-width: 35rem;">
-                    <h5 class="card-header font-weight-bold text-center">Misi PT Dul Jaya Sempurna</h5>
-                    <div class="card-body">
-                        <p class="card-text text-center">1.	Memeberikan pelayanan sepenuh hati Memenuhi keinginan konsumen dan memberikan hasil yang terbaik dengan mengutamakan kepuasan pelanggan dalam setiap pelayanannya
-                            <br>2.	Memberikan jasa transportir yang berkualitas tinggi
-                            <br>3.	Mempertahankan dan mengembangkan sertameningkatkan citra perusahaan
-                            <br>4.	Selalu berinovasi dalam bidang jasa transportasi
-                            </p>
-                    </div>
-                </div> --}}
-
             </center>
 
         </div>
