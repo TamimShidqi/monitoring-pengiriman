@@ -19,6 +19,9 @@ class SopirController extends Controller
 
     public function edit($id)
     {
+        if(sopir::where('status', 'delivery')->first()){
+            return redirect('sopir')->with('error', "Tidak Bisa Mengedit Sopir Yang Sedang Melakukan Pengiriman");
+        }
         $sopir = sopir::with('sopir')->find($id);
         return view('sopir.edit', compact('sopir'));
     }
