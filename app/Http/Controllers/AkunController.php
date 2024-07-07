@@ -56,6 +56,7 @@ class AkunController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $model = Akun::find($id);
         $model->sopir_id = $request->sopir_id;
         $model->email = $request->email;
@@ -76,6 +77,17 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
+        if (Akun::find($id) == null) {
+            return redirect('akun')->with('error', "Data Tidak Ditemukan");
+        }
+
+        if (Akun::where('sopir_id', $id)->first()) {
+            return redirect('akun')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
+        }
+
+        if (auth()->user()->id == $id) {
+            return redirect('akun')->with('error', "Tidak Bisa Menghapus Akun Yang Sedang Login");
+        }
         $model = Akun::find($id);
         $model->delete();
         return redirect('akun')->with('success', "Data Berhasil Dihapus");

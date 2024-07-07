@@ -39,8 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="date_order">Date Order:</label>
-                                <input type="date" name="date_order" id="date_order" class="form-control" required>
-                            </div>
+                                <input type="date" name="date_order" id="date_order" class="form-control" required min="<?php echo date('Y-m-d'); ?>">                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-form-label mt-2">Jenis:</label>
                                 <select class="form-control" name="jenis" required>
@@ -52,9 +51,9 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="liter">Liter:</label>
+                                <label for="liter">Liter: 1-8</label>
                                 <input type="number" name="liter" id="liter" class="form-control" required
-                                    max='8000'>
+                                    min="1" max='8'>
                             </div>
                             <div class="form-group">
                                 <label for="jarak">Jarak:</label>

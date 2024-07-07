@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use App\Models\sopir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class SopirController extends Controller
@@ -80,6 +81,14 @@ class SopirController extends Controller
 
     public function destroy($id)
     {
+        if (Akun::where('sopir_id', $id)->first()) {
+            return redirect('sopir')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
+        }
+
+        if (sopir::where('id', $id)->first()) {
+            return redirect('sopir')->with('error', "Tidak Bisa Menghapus Sopir Yang Terkait");
+        }
+
         $sopir = sopir::find($id);
         $sopir->delete();
         return redirect('sopir')->with('success', "Data Berhasil Dihapus");

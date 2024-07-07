@@ -4,6 +4,9 @@
     @if (Session::has('success'))
         <p class="alert alert-success">{{ Session::get('success') }}</p>
     @endif
+    @if (Session::has('error'))
+        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+    @endif
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -162,9 +165,9 @@
                 </table>
             @endif
             @if (Auth::user()->role == 'admin')
-            <div>
-                <canvas id="pengirimanChart"></canvas>
-            </div>
+                <div>
+                    <canvas id="pengirimanChart"></canvas>
+                </div>
             @endif
             <center>
                 <div class="card mt-5 shadow p-3 mb-5 bg-body rounded" style="max-width: 35rem;">
@@ -195,29 +198,29 @@
     </section>
 @endsection
 @push('scripts')
-<script>
-    var data = @json($graph);
+    <script>
+        var data = @json($graph);
 
-    var ctx = document.getElementById('pengirimanChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: data.map(row => row.bulan),
-            datasets: [{
-                label: 'Total Pengiriman',
-                data: data.map(row => row.total),
-                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna bar
-                borderColor: 'rgba(54, 162, 235, 1)', // Warna border
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        var ctx = document.getElementById('pengirimanChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(row => row.bulan),
+                datasets: [{
+                    label: 'Total Pengiriman',
+                    data: data.map(row => row.total),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna bar
+                    borderColor: 'rgba(54, 162, 235, 1)', // Warna border
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
 @endpush

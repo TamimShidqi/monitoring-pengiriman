@@ -1,6 +1,13 @@
 @extends('layout.index')
 
 @section('content')
+    @if (Session::has('success'))
+        <p class="alert alert-success">{{ Session::get('success') }}</p>
+    @endif
+    @if (Session::has('error'))
+        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+    @endif
+
     <div class="container">
         <h1>Riwayat Pengiriman</h1>
         @if (Auth::user()->role == 'admin')
