@@ -20,12 +20,12 @@ class AkunSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // DB::table('akun')->insert([
-        //     'sopir_id' => 2,
-        //     'email' => 'mtamimshidqi27@gmail.com',
-        //     'password' => bcrypt('tamim'),
-        //     'role' => 'sopir',
-        // ]);
+        DB::table('akun')->insert([
+            'sopir_id' => 2,
+            'email' => 'mtamimshidqi27@gmail.com',
+            'password' => bcrypt('tamim'),
+            'role' => 'sopir',
+        ]);
 
     }
 }

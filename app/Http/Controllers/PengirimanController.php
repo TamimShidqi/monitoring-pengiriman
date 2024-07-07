@@ -44,6 +44,10 @@ class PengirimanController extends Controller
 
     public function store(Request $request)
     {
+        if(!auth()->user()->hasRole('sopir')) {
+            return redirect('pengiriman')->with('status', 'Anda tidak memiliki akses!');
+        }
+
         $pengiriman = new pengiriman();
         $pengiriman->sopir_id = $request->sopir_id;
         $pengiriman->mobil_id = $request->mobil_id;

@@ -106,45 +106,11 @@
                                                               </div>
                                                             </div>
                                                           </div>
-
-
-                                                                {{-- <button type="button" class="btn btn-link"
-                                                                    data-toggle="modal"
-                                                                    data-target="#fotoModal{{ $data->id }}"
-                                                                    data-foto-path="{{ asset($data->foto) }}">
-                                                                    <i class="fas fa-image"></i>
-                                                                </button>
-
-                                                                <div class="modal fade" id="fotoModal{{ $data->id }}"
-                                                                    tabindex="-1" role="dialog"
-                                                                    aria-labelledby="fotoModalLabel{{ $data->id }}"
-                                                                    aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered"
-                                                                        role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title"
-                                                                                    id="fotoModalLabel{{ $data->id }}">
-                                                                                    Foto Pengiriman</h5>
-                                                                                <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close"><span
-                                                                                        aria-hidden="true">&times;</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <div class="modal-body"
-                                                                                onclick="closeModal('fotoModal{{ $data->foto }}')">
-                                                                                <img id="fotoModalImage{{ $data->foto }}"
-                                                                                    class="img-fluid">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div> --}}
                                                             @endif
                                                         @endif
                                                     </td>
                                                     <td align="center">
-                                                        @if (Auth::user()->role === 'sopir')
+                                                        @if (Auth::user()->role === 'sopir' && $data->status != 'arrived')
                                                             <a href="{{ route('pengiriman.edit', $data->id) }}"
                                                                 class="btn btn-warning mr-2">
                                                                 <i class="far fa-edit"></i>

@@ -3,6 +3,7 @@
     <center>
         <a href="{{ url('dashboard') }}" class="brand-link">
             {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+            <img style="width: 40px" src="logo.png" alt="">
             <span class="brand-text font-weight-light">PT. Dul Jaya Sempurna</span>
         </a>
     </center>

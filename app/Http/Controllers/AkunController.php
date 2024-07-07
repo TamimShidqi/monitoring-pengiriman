@@ -56,7 +56,6 @@ class AkunController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $model = Akun::find($id);
         $model->sopir_id = $request->sopir_id;
         $model->email = $request->email;
