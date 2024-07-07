@@ -40,6 +40,9 @@ class AkunController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->id != $id && auth()->user()->role != 'admin') {
+            return redirect('akun')->with('error', "Tidak Bisa Mengedit Akun Lain");
+        }
         $sopir = sopir::all();
         $akun = Akun::with('sopir')->find($id);
         return view('akun.edit', compact('akun','sopir'));
@@ -76,6 +79,9 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('akun')->with('error', "Anda Tidak Memiliki Akses");
+        }
         if (Akun::find($id) == null) {
             return redirect('akun')->with('error', "Data Tidak Ditemukan");
         }

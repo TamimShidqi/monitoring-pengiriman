@@ -56,7 +56,7 @@
                                     min="1" max='8'>
                             </div>
                             <div class="form-group">
-                                <label for="jarak">Jarak:</label>
+                                <label for="jarak">Jarak: /Km</label>
                                 <input type="number" name="jarak" id="jarak" class="form-control" required step="0.1">
                             </div>
                             <div class="form-group">

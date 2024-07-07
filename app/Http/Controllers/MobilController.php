@@ -57,8 +57,8 @@ class MobilController extends Controller
             return redirect('mobil')->with('error', "Data Tidak Ditemukan");
         }
 
-        if (mobil::where('id', $id)->first()) {
-            return redirect('sopir')->with('error', "Tidak Bisa Menghapus Mobil Yang Terkait");
+        if (mobil::where('status', 'delivery')->first()) {
+            return redirect('mobil')->with('error', "Tidak Bisa Menghapus Mobil Yang Terkait");
         }
         $mobil = mobil::find($id);
         $mobil->delete();

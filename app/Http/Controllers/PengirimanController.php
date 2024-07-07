@@ -34,6 +34,9 @@ class PengirimanController extends Controller
 
     public function create()
     {
+        if(auth()->user()->role != 'admin'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
         $sopir = Sopir::where('status', 'ready')
             ->whereNotIn('nama', ['admin'])
             ->get();
@@ -44,6 +47,9 @@ class PengirimanController extends Controller
 
     public function store(Request $request)
     {
+        if(auth()->user()->role != 'admin'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
         $pengiriman = new pengiriman();
         $pengiriman->sopir_id = $request->sopir_id;
         $pengiriman->mobil_id = $request->mobil_id;
@@ -66,7 +72,7 @@ class PengirimanController extends Controller
         $mobil->save();
         $pengiriman->save();
 
-        return redirect('pengiriman')->with('status', 'Data pengiriman berhasil ditambahkan!');
+        return redirect('pengiriman')->with('error', 'Data pengiriman berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -77,6 +83,9 @@ class PengirimanController extends Controller
 
     public function edit($id)
     {
+        if(auth()->user()->role != 'sopir'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
         $sopir = sopir::all();
         $mobil = mobil::all();
         $pengiriman = Pengiriman::find($id);
@@ -85,6 +94,9 @@ class PengirimanController extends Controller
 
     public function update(Request $request, $id)
     {
+        if(auth()->user()->role != 'sopir'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
         $request->validate([
             'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
@@ -143,11 +155,14 @@ class PengirimanController extends Controller
             $history->save();
         }
 
-        return redirect('pengiriman')->with('status', 'Data pengiriman berhasil diubah!');
+        return redirect('pengiriman')->with('error', 'Data pengiriman berhasil diubah!');
     }
 
     public function downloadPdf($id)
     {
+        if(auth()->user()->role != 'admin'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
         $mpdf = new \Mpdf\Mpdf();
         $pengiriman = pengiriman::find($id);
         $mpdf->WriteHTML(view('pengiriman.show', ['pengiriman' => $pengiriman]));

@@ -19,9 +19,9 @@ class SopirController extends Controller
 
     public function edit($id)
     {
-        // if(sopir::where('status', 'delivery')->first()){
-        //     return redirect('sopir')->with('error', "Tidak Bisa Mengedit Sopir Yang Sedang Melakukan Pengiriman");
-        // }
+        if (auth()->user()->sopir->id != $id && auth()->user()->role != 'admin'){
+            return redirect('sopir')->with('error', "Tidak Bisa Mengedit Sopir Lain");
+        }
         $sopir = sopir::with('sopir')->find($id);
         return view('sopir.edit', compact('sopir'));
     }
@@ -88,7 +88,7 @@ class SopirController extends Controller
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
         }
 
-        if (sopir::where('id', $id)->first()) {
+        if (sopir::where('status', 'delivery')->first()) {
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Sopir Yang Terkait");
         }
 

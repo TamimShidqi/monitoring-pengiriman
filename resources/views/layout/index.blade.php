@@ -3,6 +3,9 @@
 
 <head>
     @include('layout/style')
+    <style>
+        
+    </style>
     @yield('styles')
     <title>@yield('titles')</title>
     <title>@yield('title')</title>
