@@ -72,7 +72,7 @@ class PengirimanController extends Controller
         $mobil->save();
         $pengiriman->save();
 
-        return redirect('pengiriman')->with('error', 'Data pengiriman berhasil ditambahkan!');
+        return redirect('pengiriman')->with('success', 'Data pengiriman berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -155,7 +155,7 @@ class PengirimanController extends Controller
             $history->save();
         }
 
-        return redirect('pengiriman')->with('error', 'Data pengiriman berhasil diubah!');
+        return redirect('pengiriman')->with('success', 'Data pengiriman berhasil diubah!');
     }
 
     public function downloadPdf($id)
@@ -167,5 +167,23 @@ class PengirimanController extends Controller
         $pengiriman = pengiriman::find($id);
         $mpdf->WriteHTML(view('pengiriman.show', ['pengiriman' => $pengiriman]));
         $mpdf->Output('surat-jalan.pdf', 'I');
+    }
+
+    public function destroy($id)
+    {
+        if(auth()->user()->role != 'admin'){
+            return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
+        }
+        $pengiriman = pengiriman::find($id);
+        $sopir = sopir::find($pengiriman->sopir_id);
+        $mobil = mobil::find($pengiriman->mobil_id);
+
+        $sopir->status = 'ready';
+        $mobil->status = 'ready';
+        $sopir->save();
+        $mobil->save();
+        $pengiriman->delete();
+
+        return redirect('pengiriman')->with('success', 'Data pengiriman berhasil dihapus!');
     }
 }

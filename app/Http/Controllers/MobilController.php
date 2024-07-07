@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\mobil;
+use App\Models\pengiriman;
 use Illuminate\Http\Request;
 
 class MobilController extends Controller
@@ -57,7 +58,7 @@ class MobilController extends Controller
             return redirect('mobil')->with('error', "Data Tidak Ditemukan");
         }
 
-        if (mobil::where('status', 'delivery')->first()) {
+        if (pengiriman::where('mobil_id', $id)->first()) {
             return redirect('mobil')->with('error', "Tidak Bisa Menghapus Mobil Yang Terkait");
         }
         $mobil = mobil::find($id);

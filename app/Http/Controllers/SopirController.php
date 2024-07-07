@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use App\Models\pengiriman;
 use App\Models\sopir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,7 +89,7 @@ class SopirController extends Controller
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
         }
 
-        if (sopir::where('status', 'delivery')->first()) {
+        if (pengiriman::where('sopir_id', $id)->first()) {
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Sopir Yang Terkait");
         }
 
