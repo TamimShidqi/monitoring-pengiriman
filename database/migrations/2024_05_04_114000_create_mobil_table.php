@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mobil', function (Blueprint $table) {
             $table->id();
-            $table->string('nopol', 9);
+            $table->string('nopol', 9)->unique();
             $table->enum('status', ['ready', 'delivery'])->default('ready');
             $table->enum('kapasitas', [8000])->default(8000);
             $table->date('masa_stnk');

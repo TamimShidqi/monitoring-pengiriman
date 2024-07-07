@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sopir', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 30);
+            $table->string('nama', 30)->unique();
             $table->string('nik', 16)->unique();
             $table->date('tgl_lahir');
             $table->string('alamat', 50);
