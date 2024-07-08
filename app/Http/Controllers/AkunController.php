@@ -85,9 +85,9 @@ class AkunController extends Controller
             return redirect('akun')->with('error', "Data Tidak Ditemukan");
         }
 
-        if (Akun::where('sopir_id', $id)->first()) {
-            return redirect('akun')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
-        }
+        // if (Akun::where('sopir_id', $id)->first()) {
+        //     return redirect('akun')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
+        // }
 
         if (auth()->user()->id == $id) {
             return redirect('akun')->with('error', "Tidak Bisa Menghapus Akun Yang Sedang Login");

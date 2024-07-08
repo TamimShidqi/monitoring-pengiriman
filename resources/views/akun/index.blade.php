@@ -71,7 +71,7 @@
                                                     class="btn btn-warning mr-2">
                                                     <i class="far fa-edit"></i>
                                                 </a>
-                                                @if (Auth::user()->role === 'admin')
+                                                {{-- @if (Auth::user()->role === 'admin')
                                                 <form style="display: inline"
                                                 action="{{ route('akun.destroy', $data->id) }}" method="POST">
                                                 @csrf
@@ -79,7 +79,7 @@
                                                 <button class="btn btn-danger mr-2" type="submit"><i
                                                     class="fas fa-trash-alt"></i></button>
                                                 </form>
-                                                @endif
+                                                @endif --}}
                                             </td>
                                         </tr>
                                         @endif

@@ -27,7 +27,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">NIK</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="nik" class="form-control ml-2" required>
+                                            <input type="number" name="nik" class="form-control ml-2" required min="16" max="16">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -45,19 +45,19 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="email" class="form-control ml-2" required>
+                                            <input type="email" name="email" class="form-control ml-2" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">No. Telp</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="no_hp" class="form-control ml-2" required>
+                                            <input type="number" name="no_hp" class="form-control ml-2" required min="11" max="13">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Masa SIM</label>
                                         <div class="col-sm-10">
-                                            <input type="date" name="masa_sim" class="form-control ml-2" required>
+                                            <input type="date" name="masa_sim" class="form-control ml-2" required min="<?php echo date('Y-m-d'); ?>">
                                         </div>
                                     </div>
                                     <div align="center">

@@ -39,7 +39,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="date_order">Date Order:</label>
-                                <input type="date" name="date_order" id="date_order" class="form-control" required min="<?php echo date('Y-m-d'); ?>">                            </div>
+                                <input type="date" name="date_order" id="date_order" class="form-control" required
+                                    min="<?php echo date('Y-m-d'); ?>">
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-form-label mt-2">Jenis:</label>
                                 <select class="form-control" name="jenis" required>
@@ -57,7 +59,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="jarak">Jarak: /Km</label>
-                                <input type="number" name="jarak" id="jarak" class="form-control" required step="0.1">
+                                <input type="number" name="jarak" id="jarak" class="form-control" required
+                                    step="0.1">
                             </div>
                             <div class="form-group">
                                 <label for="tarif">Tarif:</label>

@@ -85,15 +85,17 @@ class SopirController extends Controller
 
     public function destroy($id)
     {
-        if (Akun::where('sopir_id', $id)->first()) {
-            return redirect('sopir')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
-        }
+        // if (Akun::where('sopir_id', $id)->first()) {
+        // return redirect('sopir')->with('error', "Tidak Bisa Menghapus Akun Yang Terkait");
+        // }
 
         if (pengiriman::where('sopir_id', $id)->first()) {
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Sopir Yang Terkait");
         }
 
         $sopir = sopir::find($id);
+        $akun = Akun::find($sopir->id);
+        $akun->delete();
         $sopir->delete();
         return redirect('sopir')->with('success', "Data Berhasil Dihapus");
     }

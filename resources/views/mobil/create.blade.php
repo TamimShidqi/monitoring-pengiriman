@@ -37,8 +37,7 @@
                                         <label class="col-sm-2 col-form-label mt-2">Kapasitas</label>
                                         <div class="col-sm-10">
                                             <select class="form-control ml-2" name="kapasitas" required>
-                                                <option value="8000">8000 Liter</option>
-                                                <option value="16000">16000 Liter</option>
+                                                <option value="8000" selected>8000 Liter</option>
                                             </select>
                                         </div>
                                     </div>
