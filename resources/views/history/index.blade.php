@@ -50,7 +50,7 @@
                         <th>Total</th>
                         <th>Foto</th>
                     @endif
-                    <th>updated_at</th>
+                    <th>Diperbarui pada tanggal</th>
                 </tr>
             </thead>
             @foreach ($history as $data)

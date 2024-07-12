@@ -3,6 +3,7 @@
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\JenisController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PengirimanController;
 use App\Http\Controllers\SopirController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/akun', AkunController::class);
     Route::resource('/sopir', SopirController::class);
     Route::resource('/mobil', MobilController::class);
+    Route::resource('/jenis', JenisController::class);
     Route::resource('/pengiriman', PengirimanController::class);
     Route::get('/pengiriman/pdf/{id}', [PengirimanController::class, 'downloadPdf'])->name('pengiriman.downloadPdf');
     Route::resource('/history', HistoryController::class);

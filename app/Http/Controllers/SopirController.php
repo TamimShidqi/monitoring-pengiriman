@@ -13,7 +13,11 @@ class SopirController extends Controller
 {
     public function index(Request $request)
     {
-        $sopir = sopir::where('nama', '!=', 'admin')->get();
+        if (auth()->user()->role == 'admin') {
+            $sopir = sopir::all();
+        } else {
+            $sopir = sopir::where('nama', '!=', 'admin')->get();
+        }
         $akun = Akun::all();
         return view('sopir.index', compact('sopir'));
     }
@@ -93,10 +97,11 @@ class SopirController extends Controller
             return redirect('sopir')->with('error', "Tidak Bisa Menghapus Sopir Yang Terkait");
         }
 
-        $sopir = sopir::find($id);
-        $akun = Akun::find($sopir->id);
-        $akun->delete();
+        $sopir = Sopir::find($id);
+
+        $sopir->akun()->delete();
+
         $sopir->delete();
-        return redirect('sopir')->with('success', "Data Berhasil Dihapus");
+              return redirect('sopir')->with('success', "Data Berhasil Dihapus");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\History;
+use App\Models\Jenis;
 use App\Models\mobil;
 use App\Models\pengiriman;
 use App\Models\sopir;
@@ -19,7 +20,7 @@ class PengirimanController extends Controller
         $pengiriman = Pengiriman::whereNotIn('status', ['arrived'])
             ->orWhere(function ($query) {
                 $query->where('status', 'arrived')
-                      ->whereDate('updated_at', '>=', Carbon::now()->subDays(1)); // Perbaiki kondisi tanggal
+                    ->whereDate('updated_at', '>=', Carbon::now()->subDays(1)); // Perbaiki kondisi tanggal
             })
             ->orderBy('status', 'desc')
             ->get();
@@ -32,20 +33,21 @@ class PengirimanController extends Controller
 
     public function create()
     {
-        if(auth()->user()->role != 'admin'){
+        if (auth()->user()->role != 'admin') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $sopir = Sopir::where('status', 'ready')
             ->whereNotIn('nama', ['admin'])
             ->get();
         $mobil = mobil::where('status', 'ready')->get();
+        $jenis = Jenis::all();
         $pengiriman = pengiriman::all();
-        return view('pengiriman.create', compact('pengiriman', 'sopir', 'mobil'));
+        return view('pengiriman.create', compact('pengiriman', 'sopir', 'mobil', 'jenis'));
     }
 
     public function store(Request $request)
     {
-        if(auth()->user()->role != 'admin'){
+        if (auth()->user()->role != 'admin') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $pengiriman = new pengiriman();
@@ -54,11 +56,25 @@ class PengirimanController extends Controller
         $pengiriman->perusahaan = $request->perusahaan;
         $pengiriman->alamat = $request->alamat;
         $pengiriman->date_order = $request->date_order;
-        $pengiriman->jenis = $request->jenis;
+        $pengiriman->jenis_id = $request->jenis_id;
         $pengiriman->liter = $request->liter;
         $pengiriman->jarak = $request->jarak;
         $pengiriman->tarif = $request->tarif;
-        $total = $request->liter * $request->jarak * $request->tarif;
+        $mobil = Mobil::find($request->mobil_id);
+
+        $kapasitas = $mobil->kapasitas;
+
+        if ($kapasitas == 8000) {
+            $kapasitas = 8;
+        }
+        if ($kapasitas == 16000) {
+            $kapasitas = 10;
+        }
+
+        $jarak = $request->jarak;
+        $tarif = $request->tarif;
+
+        $total = $kapasitas * $jarak * $tarif;
         $pengiriman->total = $total;
 
         $sopir = sopir::find($request->sopir_id);
@@ -81,7 +97,7 @@ class PengirimanController extends Controller
 
     public function edit($id)
     {
-        if(auth()->user()->role != 'sopir'){
+        if (auth()->user()->role != 'sopir') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $sopir = sopir::all();
@@ -92,7 +108,7 @@ class PengirimanController extends Controller
 
     public function update(Request $request, $id)
     {
-        if(auth()->user()->role != 'sopir'){
+        if (auth()->user()->role != 'sopir') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $request->validate([
@@ -106,7 +122,7 @@ class PengirimanController extends Controller
         $pengiriman->perusahaan = $request->perusahaan;
         $pengiriman->alamat = $request->alamat;
         $pengiriman->date_order = $request->date_order;
-        $pengiriman->jenis = $request->jenis;
+        $pengiriman->jenis_id = $request->jenis_id;
         $pengiriman->liter = $request->liter;
         $pengiriman->jarak = $request->jarak;
         $pengiriman->tarif = $request->tarif;
@@ -117,9 +133,9 @@ class PengirimanController extends Controller
                 Storage::delete($pengiriman->foto);
             }
 
-            $imageName = time().'.'.$request->foto->extension();
+            $imageName = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('fotos'), $imageName);
-                $pengiriman->foto = $imageName;
+            $pengiriman->foto = $imageName;
         }
 
         $pengiriman->total = $request->liter * $request->jarak * $request->tarif;
@@ -145,12 +161,12 @@ class PengirimanController extends Controller
             $history->save();
         }
 
-        return redirect('pengiriman')->with('success', 'Data pengiriman berhasil diubah!');
+        return redirect('pengiriman')->with('success', 'Status pengiriman berhasil diubah!');
     }
 
     public function downloadPdf($id)
     {
-        if(auth()->user()->role != 'admin'){
+        if (auth()->user()->role != 'admin') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $mpdf = new \Mpdf\Mpdf();
@@ -161,7 +177,7 @@ class PengirimanController extends Controller
 
     public function destroy($id)
     {
-        if(auth()->user()->role != 'admin'){
+        if (auth()->user()->role != 'admin') {
             return redirect('pengiriman')->with('error', 'Anda tidak memiliki akses!');
         }
         $pengiriman = pengiriman::find($id);

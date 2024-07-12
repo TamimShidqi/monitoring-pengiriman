@@ -19,7 +19,7 @@ class DashboardController extends Controller
             'akun' => Akun::where('role', '!=', 'admin')->count(),
             'mobil' => Mobil::count(),
             'sopir' => Sopir::where('nama', '!=', 'admin')->count(),
-            'pengiriman' => Pengiriman::count(),
+            'pengiriman' => Pengiriman::where('status', '!=', 'arrived')->count(),
             'pengirimanSopir' => Pengiriman::all()
         ];
 
@@ -38,4 +38,4 @@ class DashboardController extends Controller
 
         return view('Dashboard.index', compact('data', 'graph', 'pengiriman'));
     }
-    }
+}

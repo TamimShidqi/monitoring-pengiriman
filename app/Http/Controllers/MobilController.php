@@ -52,7 +52,7 @@ class MobilController extends Controller
     public function update(request $request, $id)
     {
         if (auth()->user()->role != 'admin') {
-            return redirect('dashboar');
+            return redirect('dashboard');
         }
         $mobil = mobil::find($id);
         $mobil->nopol = $request->nopol;

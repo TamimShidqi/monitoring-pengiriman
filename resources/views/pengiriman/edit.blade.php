@@ -29,7 +29,7 @@
                                     <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
                                     <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
                                     <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
-                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="jenis_id" value="{{ $pengiriman->jenis_id }}">
                                     <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
                                     <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
                                     <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">
@@ -98,7 +98,7 @@
                                     <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
                                     <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
                                     <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
-                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="jenis_id" value="{{ $pengiriman->jenis_id }}">
                                     <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
                                     <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
                                     <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">
@@ -157,7 +157,7 @@
                                     <input type="hidden" name="perusahaan" value="{{ $pengiriman->perusahaan }}">
                                     <input type="hidden" name="alamat" value="{{ $pengiriman->alamat }}">
                                     <input type="hidden" name="date_order" value="{{ $pengiriman->date_order }}">
-                                    <input type="hidden" name="jenis" value="{{ $pengiriman->jenis }}">
+                                    <input type="hidden" name="jenis_id" value="{{ $pengiriman->jenis_id }}">
                                     <input type="hidden" name="liter" value="{{ $pengiriman->liter }}">
                                     <input type="hidden" name="jarak" value="{{ $pengiriman->jarak }}">
                                     <input type="hidden" name="tarif" value="{{ $pengiriman->tarif }}">

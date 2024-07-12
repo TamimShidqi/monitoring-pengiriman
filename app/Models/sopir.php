@@ -9,9 +9,18 @@ class sopir extends Model
 {
     use HasFactory;
     protected $table = 'sopir';
+    protected $fillable = [
+        'nama',
+        'nik',
+        'tgl_lahir',
+        'alamat',
+        'email',
+        'no_hp',
+        'masa_sim',
+    ];
     public function sopir()
     {
-        return $this->belongsTo(sopir::class);
+        return $this->belongsTo(sopir::class)->onDelete('cascade');
     }
 
     public function akun()

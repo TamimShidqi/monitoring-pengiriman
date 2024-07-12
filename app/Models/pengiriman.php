@@ -34,4 +34,9 @@ class pengiriman extends Model
     {
         return $this->belongsTo(mobil::class);
     }
+
+    public function jenis()
+    {
+        return $this->belongsTo(jenis::class);
+    }
 }

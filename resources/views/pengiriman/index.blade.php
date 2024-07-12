@@ -63,9 +63,9 @@
                                                     <td>{{ $data->alamat }}</td>
                                                     <td>{{ $data->sopir->nama }}</td>
                                                     <td>{{ $data->mobil->nopol }}</td>
-                                                    <td class="text-capitalize">{{ $data->jenis }}</td>
+                                                    <td class="text-capitalize">{{ $data->jenis->nama }}</td>
                                                     @if (Auth::user()->role == 'admin')
-                                                        <td>Rp.{{ number_format($data->total, 3, ',', '.') }}</td>
+                                                        <td>Rp.{{ number_format($data->total, 2, ',', '.') }}</td>
                                                     @endif
                                                     <td align="center" style="font-size: 22px">
                                                         @if ($data->status == 'pending')
@@ -78,26 +78,38 @@
                                                             <span style="color: white"
                                                                 class="badge badge-success text-capitalize">{{ $data->status }}</span>
                                                         @elseif ($data->status == 'arrived')
-                                                        <span style="color: white" class="badge badge-primary text-capitalize" data-toggle="modal" data-target="#statusModal{{ $data->id }}">{{ $data->status }}</span>
-                                                        @if (Auth::user()->role === 'admin')
-                                                        <div class="modal fade" id="statusModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel{{ $data->id }}" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                              <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                  <h5 class="modal-title" id="statusModalLabel{{ $data->id }}">Bukti Foto</h5>
-                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                  </button>
+                                                            <span style="color: white"
+                                                                class="badge badge-primary text-capitalize"
+                                                                data-toggle="modal"
+                                                                data-target="#statusModal{{ $data->id }}">{{ $data->status }}</span>
+                                                            @if (Auth::user()->role === 'admin')
+                                                                <div class="modal fade" id="statusModal{{ $data->id }}"
+                                                                    tabindex="-1" role="dialog"
+                                                                    aria-labelledby="statusModalLabel{{ $data->id }}"
+                                                                    aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title"
+                                                                                    id="statusModalLabel{{ $data->id }}">
+                                                                                    Bukti Foto</h5>
+                                                                                <button type="button" class="close"
+                                                                                    data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <img style="width: 360px"
+                                                                                    src="{{ $data->foto ? asset('fotos/' . $data->foto) : asset('assets/') }}">
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">Tutup</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <img style="width: 360px" src="{{ $data->foto ? asset('fotos/' . $data->foto) : asset('assets/') }}">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                          </div>
                                                             @endif
                                                         @endif
                                                     </td>
@@ -113,6 +125,15 @@
                                                                 class="btn btn-success mr-2">
                                                                 <i class="fas fa-print"></i>
                                                             </a>
+                                                            @if ($data->status == 'pending')
+                                                                <form style="display: inline"
+                                                            action="{{ route('pengiriman.destroy', $data->id) }}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button class="btn btn-danger mr-2" type="submit"><i
+                                                                    class="fas fa-trash-alt"></i></button>
+                                                        </form>
+                                                            @endif
                                                         @endif
                                                     </td>
                                                 </tr>

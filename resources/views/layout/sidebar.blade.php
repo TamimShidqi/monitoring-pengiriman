@@ -64,6 +64,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">Jenis</li>
+                <li class="nav-item">
+                    <a href="{{ url('jenis') }}" class="nav-link {{ (Request::is('jenis') ? 'active' : '') }} ">
+                        <i class="nav-icon fas fa-wrench"></i>
+                        <p>
+                            Jenis Minyak
+                        </p>
+                    </a>
+                </li>
                 @endif
                 <li class="nav-header">Sopir</li>
                 <li class="nav-item">

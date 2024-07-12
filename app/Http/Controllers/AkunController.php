@@ -16,8 +16,8 @@ class AkunController extends Controller
      */
     public function index(Request $request)
     {
-        $akun=Akun::all();
         $sopir = sopir::all();
+        $akun = Akun::orderBy('role', 'asc')->get();
         return view('akun.index', compact('akun'));
     }
 

@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
@@ -26,6 +26,21 @@
         <div class="container-fluid">
             <div class="row">
                 @if (Auth::user()->role == 'admin')
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>
+                                    {{ $data['pengiriman'] }}
+                                </h3>
+                                <p>Pengiriman</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ route('pengiriman.index') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
@@ -72,26 +87,6 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>
-                                @if (Auth::user()->role == 'admin')
-                                    {{ $data['pengiriman'] }}
-                                @endif
-                                @if (Auth::user()->role == 'sopir')
-                                    {{ count($data['pengirimanSopir']->where('sopir_id', Auth::user()->sopir->id)) }}
-                                @endif
-                            </h3>
-                            <p> Total Pengiriman</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="{{ route('pengiriman.index') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
                 <!-- /.col-md-6 -->
             </div>
             <!-- /.row -->
@@ -149,12 +144,6 @@
                                         @if (Auth::user()->role === 'sopir')
                                             <a href="{{ route('pengiriman.index') }}" class="btn btn-warning mr-2">
                                                 <i class="far fa-edit"></i>
-                                            </a>
-                                        @endif
-                                        @if (Auth::user()->role === 'admin')
-                                            <a href="{{ url('pengiriman/pdf', $data->id) }}" method="POST"
-                                                class="btn btn-success mr-2">
-                                                <i class="fas fa-print"></i>
                                             </a>
                                         @endif
                                     </td>

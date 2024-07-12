@@ -103,8 +103,8 @@
                     <tr>
                         <td>1</td>
                         <td>Minyak</td>
-                        <td class="text-capitalize">{{$pengiriman->jenis}}</td>
-                        <td>{{$pengiriman->liter}}</td>
+                        <td class="text-capitalize">{{$pengiriman->jenis->nama}}</td>
+                        <td>{{$pengiriman->liter}}000</td>
                         <td>Liter</td>
                     </tr>
                 </tbody>
