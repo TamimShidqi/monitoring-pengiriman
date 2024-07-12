@@ -44,16 +44,6 @@ class SopirSeeder extends Seeder
         ]);
 
         DB::table('sopir')->insert([
-            'nama' => 'Dewi Sartika',
-            'nik' => '1234567890123457',
-            'tgl_lahir' => '1990-03-20',
-            'alamat' => 'Jl. Kenanga No. 5',
-            'email' => 'dewi.sartika@example.com',
-            'no_hp' => '081234567892',
-            'masa_sim' => '2025-03-20',
-        ]);
-
-        DB::table('sopir')->insert([
             'nama' => 'Budi Santoso',
             'nik' => '1234567890123458',
             'tgl_lahir' => '1975-07-07',
@@ -61,27 +51,6 @@ class SopirSeeder extends Seeder
             'email' => 'budi.santoso@example.com',
             'no_hp' => '081234567893',
             'masa_sim' => '2025-07-07',
-        ]);
-
-        DB::table('sopir')->insert([
-            'nama' => 'Sri Rahayu',
-            'nik' => '1234567890123459',
-            'tgl_lahir' => '1982-11-25',
-            'alamat' => 'Jl. Anggrek No. 8',
-            'email' => 'sri.rahayu@example.com',
-            'no_hp' => '081234567894',
-            'masa_sim' => '2025-11-25',
-        ]);
-
-        // Tambahan 5 data sopir lagi dengan nama laki-laki
-        DB::table('sopir')->insert([
-            'nama' => 'Siti Aminah',
-            'nik' => '1234567890123460',
-            'tgl_lahir' => '1992-06-15',
-            'alamat' => 'Jl. Mawar No. 21',
-            'email' => 'siti.aminah@example.com',
-            'no_hp' => '081234567895',
-            'masa_sim' => '2026-06-15',
         ]);
 
         DB::table('sopir')->insert([
@@ -95,16 +64,6 @@ class SopirSeeder extends Seeder
         ]);
 
         DB::table('sopir')->insert([
-            'nama' => 'Yulia Andriani',
-            'nik' => '1234567890123462',
-            'tgl_lahir' => '1995-09-12',
-            'alamat' => 'Jl. Flamboyan No. 7',
-            'email' => 'yulia.andriani@example.com',
-            'no_hp' => '081234567897',
-            'masa_sim' => '2027-09-12',
-        ]);
-
-        DB::table('sopir')->insert([
             'nama' => 'Taufik Hidayat',
             'nik' => '1234567890123463',
             'tgl_lahir' => '1980-12-25',
@@ -114,15 +73,57 @@ class SopirSeeder extends Seeder
             'masa_sim' => '2025-12-25',
         ]);
 
+        // Tambahan 5 data sopir lagi dengan nama laki-laki
         DB::table('sopir')->insert([
-            'nama' => 'Lisa Marlina',
-            'nik' => '1234567890123464',
+            'nama' => 'Slamet Riyadi',
+            'nik' => '1234567890123470',
+            'tgl_lahir' => '1990-06-15',
+            'alamat' => 'Jl. Mawar No. 21',
+            'email' => 'slamet.riyadi@example.com',
+            'no_hp' => '081234567895',
+            'masa_sim' => '2026-06-15',
+        ]);
+
+        DB::table('sopir')->insert([
+            'nama' => 'Agus Widodo',
+            'nik' => '1234567890123471',
+            'tgl_lahir' => '1988-04-30',
+            'alamat' => 'Jl. Cempaka No. 3',
+            'email' => 'agus.widodo@example.com',
+            'no_hp' => '081234567896',
+            'masa_sim' => '2025-04-30',
+        ]);
+
+        DB::table('sopir')->insert([
+            'nama' => 'Dedi Supriyadi',
+            'nik' => '1234567890123472',
+            'tgl_lahir' => '1995-09-12',
+            'alamat' => 'Jl. Flamboyan No. 7',
+            'email' => 'dedi.supriyadi@example.com',
+            'no_hp' => '081234567897',
+            'masa_sim' => '2027-09-12',
+        ]);
+
+        DB::table('sopir')->insert([
+            'nama' => 'Hariyanto',
+            'nik' => '1234567890123473',
+            'tgl_lahir' => '1980-12-25',
+            'alamat' => 'Jl. Dahlia No. 11',
+            'email' => 'hariyanto@example.com',
+            'no_hp' => '081234567898',
+            'masa_sim' => '2025-12-25',
+        ]);
+
+        DB::table('sopir')->insert([
+            'nama' => 'Andi Prasetyo',
+            'nik' => '1234567890123474',
             'tgl_lahir' => '1998-11-05',
             'alamat' => 'Jl. Teratai No. 9',
-            'email' => 'lisa.marlina@example.com',
+            'email' => 'andi.prasetyo@example.com',
             'no_hp' => '081234567899',
             'masa_sim' => '2028-11-05',
         ]);
+
 
     }
 }
